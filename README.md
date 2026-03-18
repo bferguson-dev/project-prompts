@@ -33,6 +33,8 @@ The leading numbers indicate recommended load order and relative importance:
 - `16` to `22`: task-specific prompts
 - `23` to `24`: process and environment constraints
 - `25` to `29`: documentation and presentation prompts
+- unnumbered files such as `README.md`, `CHANGELOG.md`, and `LICENSE` are repo
+  metadata, not prompt assets
 
 ## Compatibility Table
 
