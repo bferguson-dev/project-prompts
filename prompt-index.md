@@ -20,6 +20,12 @@ relevant files.
   Use as the baseline test-planning standard.
 - [tooling-and-lint-prompt.md](C:\Users\Byron\tooling-and-lint-prompt.md)
   Use as the baseline validation and tooling standard.
+- [adversarial-testing-prompt.md](C:\Users\Byron\adversarial-testing-prompt.md)
+  Use when the work should be tested like someone is actively trying to break it.
+- [reliability-and-recovery-prompt.md](C:\Users\Byron\reliability-and-recovery-prompt.md)
+  Use when restart safety, retries, partial failure, or rollback matter.
+- [security-review-prompt.md](C:\Users\Byron\security-review-prompt.md)
+  Use when trust boundaries, secrets, auth, or exposure risk matter.
 - [session-start-cheatsheet.md](C:\Users\Byron\session-start-cheatsheet.md)
   Use to decide whether to keep the current session or start a new one.
 
@@ -63,6 +69,7 @@ For baseline repo work, tell the agent to read at least:
 6. [test-strategy-prompt.md](C:\Users\Byron\test-strategy-prompt.md)
 7. [tooling-and-lint-prompt.md](C:\Users\Byron\tooling-and-lint-prompt.md)
 8. One task prompt
-9. Optional constraint or documentation prompts only if relevant
+9. Add [adversarial-testing-prompt.md](C:\Users\Byron\adversarial-testing-prompt.md), [reliability-and-recovery-prompt.md](C:\Users\Byron\reliability-and-recovery-prompt.md), and [security-review-prompt.md](C:\Users\Byron\security-review-prompt.md) for high-risk or shippable work
+10. Optional constraint or documentation prompts only if relevant
 
 This is the repo's default high-assurance baseline.

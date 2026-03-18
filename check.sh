@@ -32,6 +32,7 @@ FAIL_ON_LARGE_STAGED_FILES="${FAIL_ON_LARGE_STAGED_FILES:-1}"
 MAX_STAGED_FILE_KB="${MAX_STAGED_FILE_KB:-1024}"
 FAIL_ON_SUSPICIOUS_UNTRACKED="${FAIL_ON_SUSPICIOUS_UNTRACKED:-1}"
 FAIL_ON_CRLF_STAGED="${FAIL_ON_CRLF_STAGED:-1}"
+FAIL_ON_STAGED_MARKERS="${FAIL_ON_STAGED_MARKERS:-1}"
 
 # Test strategy policy
 UNIT_TEST_PATH="${UNIT_TEST_PATH:-tests/unit}"
@@ -253,6 +254,55 @@ if bad:
 PY
 }
 
+check_staged_content_markers() {
+  "$VENV_PYTHON" - <<'PY'
+import re
+import subprocess
+import sys
+
+diff = subprocess.run(
+    ["git", "diff", "--cached", "--unified=0", "--no-color"],
+    check=True,
+    capture_output=True,
+    text=True,
+).stdout.splitlines()
+
+patterns = [
+    ("merge marker", re.compile(r"^\+(<{7}|={7}|>{7})")),
+    ("todo marker", re.compile(r"^\+\s*.*\b(TODO|FIXME|HACK|XXX)\b")),
+    ("debug print", re.compile(r"^\+\s*.*\b(console\.log|print\(|dbg!|debugger;|fmt\.Println|System\.out\.println)\b")),
+    ("local path", re.compile(r"^\+\s*.*(/home/|C:\\\\Users\\\\|/mnt/c/Users/|Users/Byron)")),
+]
+
+hits = []
+current_file = None
+skip_exts = (".md", ".txt", ".rst")
+skip_files = {"check.sh"}
+for line in diff:
+    if line.startswith("diff --git "):
+        match = re.match(r"diff --git a/(.+) b/(.+)", line)
+        current_file = match.group(2) if match else None
+        continue
+    if not line.startswith("+") or line.startswith("+++"):
+        continue
+    if current_file and (
+        current_file in skip_files or current_file.endswith(skip_exts)
+    ):
+        continue
+    for label, pattern in patterns:
+        if pattern.search(line):
+            hits.append((label, line[:200]))
+
+if hits:
+    print("FAIL: risky staged diff markers detected:")
+    for label, line in hits[:40]:
+        print(f"- {label}: {line}")
+    if len(hits) > 40:
+        print(f"... plus {len(hits) - 40} more.")
+    sys.exit(1)
+PY
+}
+
 check_shell_script_syntax() {
   local shell_files
   shell_files="$(find . -path './.git' -prune -o -type f -name '*.sh' -print)"
@@ -382,6 +432,10 @@ run_git_checks() {
 
   if [[ "$FAIL_ON_CRLF_STAGED" == "1" ]]; then
     check_staged_crlf || return 27
+  fi
+
+  if [[ "$FAIL_ON_STAGED_MARKERS" == "1" ]]; then
+    check_staged_content_markers || return 28
   fi
 
   if [[ "$RUN_GIT_SECRETS_CACHED" == "1" ]]; then

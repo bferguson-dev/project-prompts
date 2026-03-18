@@ -6,6 +6,8 @@ Use project tooling with a senior-engineer and QA-oriented workflow.
 Rules:
 - Detect and use the project's standard tools for formatting, linting,
   type-checking, and tests.
+- Treat formatter, lint, and static checks as support for correctness, not as
+  a replacement for proving the app works.
 - Do not introduce new tools unless required.
 - Do not install tools unless the task requires it and no project-standard
   option already exists.

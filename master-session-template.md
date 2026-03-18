@@ -13,6 +13,12 @@ Required baseline:
 - `C:\Users\Byron\test-strategy-prompt.md`
 - `C:\Users\Byron\tooling-and-lint-prompt.md`
 
+Use these additional prompts when the task is risky, externally exposed, or
+intended to be shippable:
+- `C:\Users\Byron\adversarial-testing-prompt.md`
+- `C:\Users\Byron\reliability-and-recovery-prompt.md`
+- `C:\Users\Byron\security-review-prompt.md`
+
 Then read only the task-specific and constraint-specific prompt files that are
 actually relevant. Do not load every prompt file by default.
 
@@ -40,7 +46,8 @@ At the end, report only:
 1. outcome or root cause
 2. files changed
 3. commands and validation performed
-4. remaining risks, assumptions, or needed input
+4. how you tried to break it
+5. remaining risks, assumptions, or needed input
 
 Task:
 - Goal: [fill in]

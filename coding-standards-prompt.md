@@ -9,6 +9,8 @@ Standards:
 - Keep lines within 88 characters unless the repository uses a different
   enforced limit.
 - Prefer small, readable functions over dense clever code.
+- Prefer straightforward methods and understandable control flow over clever
+  tricks, compressed expressions, or novelty.
 - Add thorough comments where they materially improve readability for future
   maintainers, including infrastructure engineers and non-authors.
 - Prefer explicit, maintainable code over unnecessary abstraction.
