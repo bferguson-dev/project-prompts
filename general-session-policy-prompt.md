@@ -21,6 +21,10 @@ Global rules:
 - Keep code and comments concise and maintainable.
 - Prefer readable code and simple methods over clever tricks, dense
   abstractions, or compressed logic.
+- Do not name the repo owner or use personal names in prompts, docs, or
+  examples unless explicitly required by the task.
+- Exception: in personal GitHub Pages or portfolio-facing work, using the
+  owner's real name is allowed where it improves the professional presentation.
 - Prefer ASCII unless the file already requires Unicode.
 - Keep line length within 88 characters unless the project clearly uses a
   different standard.
@@ -47,8 +51,8 @@ Global rules:
   change, update the relevant docs, prompts, or templates in the same task.
 - For user-facing changes, consider error states, accessibility, and operator
   clarity rather than validating only the happy path.
-- If a signed Git commit blocks on GPG input, wait up to 30 minutes for Byron
-  to provide the key or passphrase before retrying the commit with
+- If a signed Git commit blocks on GPG input, wait up to 30 minutes for the
+  user to provide the key or passphrase before retrying the commit with
   `gpgsign=false`.
 - Do not force-push because of a GPG signing delay alone.
 - At the end, report:

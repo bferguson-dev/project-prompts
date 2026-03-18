@@ -1,9 +1,8 @@
 # GitHub Pages Repo Style Prompt
 
 ```text
-When working in the GitHub Pages repo at
-`https://github.com/bferguson-dev/bferguson-dev.github.io`, follow the
-established site style and page structure instead of inventing a new pattern.
+When working in a personal GitHub Pages portfolio repo, follow the established
+site style and page structure instead of inventing a new pattern.
 
 Observed site conventions:
 - The site presents an infrastructure automation and operations portfolio.

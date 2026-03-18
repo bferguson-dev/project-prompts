@@ -20,6 +20,10 @@ Requirements:
 - Include a known bugs or known limitations section.
 - Keep the tone practical, professional, and easy to scan.
 - Do not write like a portfolio, tutorial blog, or marketing page.
+- Do not include the repo owner's personal name in documentation unless the
+  task explicitly requires it.
+- Exception: for personal GitHub Pages or portfolio-facing repos, the owner's
+  real name may be used where it is part of the intended presentation.
 
 Style:
 - Write for infrastructure engineers and future maintainers.

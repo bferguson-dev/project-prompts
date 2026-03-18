@@ -2,22 +2,22 @@
 
 ```text
 Read only the minimum relevant prompt files for this task from
-`C:\Users\Byron\prompt-index.md`.
+`<PROMPT_HOME>\prompt-index.md`.
 
 Required baseline:
-- `C:\Users\Byron\general-session-policy-prompt.md`
-- `C:\Users\Byron\project-governance-prompt.md`
-- `C:\Users\Byron\coding-standards-prompt.md`
-- `C:\Users\Byron\github-workflow-prompt.md`
-- `C:\Users\Byron\credentials-and-secrets-prompt.md`
-- `C:\Users\Byron\test-strategy-prompt.md`
-- `C:\Users\Byron\tooling-and-lint-prompt.md`
+- `<PROMPT_HOME>\general-session-policy-prompt.md`
+- `<PROMPT_HOME>\project-governance-prompt.md`
+- `<PROMPT_HOME>\coding-standards-prompt.md`
+- `<PROMPT_HOME>\github-workflow-prompt.md`
+- `<PROMPT_HOME>\credentials-and-secrets-prompt.md`
+- `<PROMPT_HOME>\test-strategy-prompt.md`
+- `<PROMPT_HOME>\tooling-and-lint-prompt.md`
 
 Use these additional prompts when the task is risky, externally exposed, or
 intended to be shippable:
-- `C:\Users\Byron\adversarial-testing-prompt.md`
-- `C:\Users\Byron\reliability-and-recovery-prompt.md`
-- `C:\Users\Byron\security-review-prompt.md`
+- `<PROMPT_HOME>\adversarial-testing-prompt.md`
+- `<PROMPT_HOME>\reliability-and-recovery-prompt.md`
+- `<PROMPT_HOME>\security-review-prompt.md`
 
 Then read only the task-specific and constraint-specific prompt files that are
 actually relevant. Do not load every prompt file by default.

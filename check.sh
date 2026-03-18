@@ -235,6 +235,8 @@ for path in [p for p in proc.stdout.splitlines() if p.strip()]:
             continue
         if re.match(r"^[A-Za-z]:\\", target):
             continue
+        if target.startswith("<PROMPT_HOME>"):
+            continue
         if target.startswith("<") and target.endswith(">"):
             target = target[1:-1].strip()
             if not target or target.startswith(skip_prefixes):
@@ -271,7 +273,7 @@ patterns = [
     ("merge marker", re.compile(r"^\+(<{7}|={7}|>{7})")),
     ("todo marker", re.compile(r"^\+\s*.*\b(TODO|FIXME|HACK|XXX)\b")),
     ("debug print", re.compile(r"^\+\s*.*\b(console\.log|print\(|dbg!|debugger;|fmt\.Println|System\.out\.println)\b")),
-    ("local path", re.compile(r"^\+\s*.*(/home/|C:\\\\Users\\\\|/mnt/c/Users/|Users/Byron)")),
+    ("local path", re.compile(r"^\+\s*.*(/home/|C:\\\\Users\\\\|/mnt/c/Users/)")),
 ]
 
 hits = []

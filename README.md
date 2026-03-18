@@ -98,7 +98,7 @@ Before commit, the expected workflow is:
 5. Commit
 6. Push
 
-If GPG signing blocks a commit, the workflow is to wait for Byron's approval or
+If GPG signing blocks a commit, the workflow is to wait for the user's approval or
 passphrase flow before falling back to unsigned commit behavior.
 
 ## `check.sh`

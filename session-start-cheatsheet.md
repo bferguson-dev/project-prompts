@@ -4,11 +4,11 @@ Use one prompt per meaningful objective. Keep the session focused on a single wo
 
 ## Which Prompt To Use
 
-- Project setup: use [project-setup-prompt.md](C:\Users\Byron\project-setup-prompt.md)
-- Quick setup: use [project-setup-prompt-short.md](C:\Users\Byron\project-setup-prompt-short.md)
-- Bug fix: use [bug-fix-prompt.md](C:\Users\Byron\bug-fix-prompt.md)
-- Feature work: use [feature-work-prompt.md](C:\Users\Byron\feature-work-prompt.md)
-- Code review: use [code-review-prompt.md](C:\Users\Byron\code-review-prompt.md)
+- Project setup: use [project-setup-prompt.md](<PROMPT_HOME>\project-setup-prompt.md)
+- Quick setup: use [project-setup-prompt-short.md](<PROMPT_HOME>\project-setup-prompt-short.md)
+- Bug fix: use [bug-fix-prompt.md](<PROMPT_HOME>\bug-fix-prompt.md)
+- Feature work: use [feature-work-prompt.md](<PROMPT_HOME>\feature-work-prompt.md)
+- Code review: use [code-review-prompt.md](<PROMPT_HOME>\code-review-prompt.md)
 
 ## Keep The Same Session When
 
