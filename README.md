@@ -38,6 +38,13 @@ The leading numbers indicate recommended load order and relative importance:
 
 ## Core Files
 
+- `02-session-start-cheatsheet.md`
+  Quick chooser for deciding whether to keep the current session or start a
+  new one.
+- `01-prompt-index.md`
+  Fast map of what prompt to load and when.
+- `03-master-session-template.md`
+  A ready-to-fill session template for more structured starts.
 - `04-general-session-policy-prompt.md`
   Baseline operating rules for almost every coding session.
 - `05-project-governance-prompt.md`
@@ -63,23 +70,18 @@ The leading numbers indicate recommended load order and relative importance:
   release readiness.
 - `15-compatibility-and-migration-prompt.md`
   Forces review of compatibility risk, migration steps, and rollback concerns.
-- `01-prompt-index.md`
-  Fast map of what prompt to load and when.
-- `03-master-session-template.md`
-  A ready-to-fill session template for more structured starts.
 
 ## Task Prompts
 
 Use the task prompt that matches the current objective:
 
+- `16-project-setup-prompt.md`
+- `17-project-setup-prompt-short.md`
 - `18-bug-fix-prompt.md`
 - `19-feature-work-prompt.md`
 - `20-code-review-prompt.md`
 - `21-refactor-prompt.md`
-- `16-project-setup-prompt.md`
-- `17-project-setup-prompt-short.md`
 - `22-debugging-handoff-prompt.md`
-- `09-test-strategy-prompt.md`
 
 Then add only the relevant supporting prompts for standards, workflow,
 secrets, environment constraints, docs, or repo style.

@@ -6,6 +6,8 @@ relevant files.
 
 ## Core Files
 
+- [02-session-start-cheatsheet.md](<PROMPT_HOME>\02-session-start-cheatsheet.md)
+  Use to decide whether to keep the current session or start a new one.
 - [04-general-session-policy-prompt.md](<PROMPT_HOME>\04-general-session-policy-prompt.md)
   Use for almost every coding session.
 - [05-project-governance-prompt.md](<PROMPT_HOME>\05-project-governance-prompt.md)
@@ -30,8 +32,6 @@ relevant files.
   Use when deciding whether work is actually ready to ship.
 - [15-compatibility-and-migration-prompt.md](<PROMPT_HOME>\15-compatibility-and-migration-prompt.md)
   Use when config, APIs, schemas, env vars, or workflows may break consumers.
-- [02-session-start-cheatsheet.md](<PROMPT_HOME>\02-session-start-cheatsheet.md)
-  Use to decide whether to keep the current session or start a new one.
 
 ## Task Prompts
 
@@ -40,26 +40,25 @@ relevant files.
 - [18-bug-fix-prompt.md](<PROMPT_HOME>\18-bug-fix-prompt.md)
 - [19-feature-work-prompt.md](<PROMPT_HOME>\19-feature-work-prompt.md)
 - [20-code-review-prompt.md](<PROMPT_HOME>\20-code-review-prompt.md)
-- [22-debugging-handoff-prompt.md](<PROMPT_HOME>\22-debugging-handoff-prompt.md)
 - [21-refactor-prompt.md](<PROMPT_HOME>\21-refactor-prompt.md)
-- [09-test-strategy-prompt.md](<PROMPT_HOME>\09-test-strategy-prompt.md)
+- [22-debugging-handoff-prompt.md](<PROMPT_HOME>\22-debugging-handoff-prompt.md)
 
 ## Process And Constraints
 
 - [06-coding-standards-prompt.md](<PROMPT_HOME>\06-coding-standards-prompt.md)
+- [07-github-workflow-prompt.md](<PROMPT_HOME>\07-github-workflow-prompt.md)
+- [08-credentials-and-secrets-prompt.md](<PROMPT_HOME>\08-credentials-and-secrets-prompt.md)
 - [10-tooling-and-lint-prompt.md](<PROMPT_HOME>\10-tooling-and-lint-prompt.md)
 - [23-dependency-install-prompt.md](<PROMPT_HOME>\23-dependency-install-prompt.md)
 - [24-environment-constraints-prompt.md](<PROMPT_HOME>\24-environment-constraints-prompt.md)
-- [08-credentials-and-secrets-prompt.md](<PROMPT_HOME>\08-credentials-and-secrets-prompt.md)
-- [07-github-workflow-prompt.md](<PROMPT_HOME>\07-github-workflow-prompt.md)
 
 ## Documentation
 
 - [25-documentation-standards-prompt.md](<PROMPT_HOME>\25-documentation-standards-prompt.md)
 - [26-readme-authoring-prompt.md](<PROMPT_HOME>\26-readme-authoring-prompt.md)
 - [27-legal-disclaimer-prompt.md](<PROMPT_HOME>\27-legal-disclaimer-prompt.md)
-- [29-portfolio-project-page-prompt.md](<PROMPT_HOME>\29-portfolio-project-page-prompt.md)
 - [28-github-pages-repo-style-prompt.md](<PROMPT_HOME>\28-github-pages-repo-style-prompt.md)
+- [29-portfolio-project-page-prompt.md](<PROMPT_HOME>\29-portfolio-project-page-prompt.md)
 
 ## Recommended Usage
 

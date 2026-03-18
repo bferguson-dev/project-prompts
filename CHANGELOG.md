@@ -2,6 +2,8 @@
 
 ## 2026-03-18
 
+- Standardized the prompt index and README ordering around numbered filenames.
+- Established one fixed legal disclaimer phrase for reuse across repositories.
 - Established the prompt kit baseline and QA gate.
 - Added adversarial testing, reliability/recovery, and security review prompts.
 - Added stronger Git hygiene, secret scanning, Markdown sanity, and staged diff

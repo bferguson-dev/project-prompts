@@ -1,23 +1,30 @@
 # Legal Disclaimer Prompt
 
 ```text
-Write repository disclaimer text in a conservative, professional tone.
+Use one fixed legal disclaimer phrase across all repositories. Do not
+paraphrase it, shorten it, expand it, or rewrite it once approved.
 
-Requirements:
-- State clearly that the software is provided as-is, without warranties.
-- State clearly that it has not been validated in production unless I say
-  otherwise.
-- State that users are responsible for their own evaluation, testing,
-  compliance, and safe operation.
-- State that I assume no responsibility or liability for loss, damage, outage,
-  misuse, or consequences arising from use of the project.
-- Keep the README disclaimer short and high-visibility.
-- Put fuller legal language into a dedicated repository file.
-- Avoid pretending this is formal legal advice; keep it practical and
-  protective.
+Exact disclaimer text:
+"This project is provided as-is, without warranties or guarantees of any kind,
+and has not been validated in a production environment unless explicitly
+stated otherwise. You are solely responsible for evaluating, testing,
+securing, and operating it safely in your environment and for verifying
+compliance with any legal, regulatory, or contractual requirements. By using
+this project, you accept all risk, and the authors and contributors assume no
+liability for any loss, damage, outage, misuse, or other consequences arising
+from its use."
+
+Usage rules:
+- Use that exact wording in every repository disclaimer.
+- The README may add formatting for visibility, but the sentence wording must
+  remain identical.
+- A dedicated disclaimer file may add a heading, but the disclaimer body must
+  remain identical.
+- If a repository needs a different disclaimer, flag it as an exception rather
+  than silently rewriting the standard text.
 
 Output:
-1. Short disclaimer text
-2. Full disclaimer file text or changes
-3. Any legal-risk caveats that should still be reviewed separately
+1. Exact disclaimer text reused verbatim
+2. Files updated to use it
+3. Any exception that would require legal review
 ```
