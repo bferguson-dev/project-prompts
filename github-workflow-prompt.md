@@ -10,12 +10,30 @@ Rules:
 - Prefer small, reviewable diffs over broad mixed changes.
 - Follow the project's existing branch and commit conventions if they are
   visible.
+- Stage changes intentionally; do not commit an accidental subset or
+  unexplained mix of staged and unstaged work.
 - If preparing a PR, summarize behavior changes, risk areas, and verification.
 - If reviewing changes, focus first on bugs, regressions, and missing tests.
 - Do not rewrite history unless I explicitly ask for it.
 - If the worktree is dirty, work carefully around unrelated edits.
 - When uncertain whether a file was intentionally changed by me, preserve it
   and call out the risk.
+- Before every commit, review `git diff --cached` for accidental secrets,
+  personal data, machine paths, generated noise, and unrelated files.
+- Before every commit, run `git diff --cached --check` and stop on whitespace,
+  conflict-marker, or patch-application problems.
+- Immediately before every commit, run `git secrets` against the pending
+  changes and stop if it reports a problem.
+- Before every commit, inspect file-mode changes and fix unexpected
+  executable-bit changes.
+- Before every commit, check for accidental binaries, large files, local notes,
+  exported data, screenshots, archives, and machine-specific artifacts.
+- If dependency manifests or lockfiles changed, run the relevant dependency
+  vulnerability audit before committing.
+- Before the first push to a new remote or after suspected exposure, run a
+  history-aware secret scan such as `git secrets --scan-history`.
+- Before pushing, verify the target branch and remote are the intended ones.
+- Never treat a broken secret scan or broken quality gate as a pass.
 
 Output:
 1. Git-relevant actions taken

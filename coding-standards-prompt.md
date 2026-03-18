@@ -14,6 +14,12 @@ Standards:
 - Prefer explicit, maintainable code over unnecessary abstraction.
 - Avoid dead code, speculative hooks, and premature generalization.
 - Keep public behavior stable unless the task requires a change.
+- Validate inputs, trust boundaries, and error paths, not just the happy path.
+- Fail safely and clearly; do not hide errors or silently continue in unsafe
+  states.
+- Do not leak secrets, tokens, or sensitive system details through logs,
+  errors, comments, tests, or examples.
+- Prefer secure defaults and least-surprise behavior over convenience hacks.
 - When editing, minimize diff size and avoid unrelated reformatting.
 - Respect existing lint, formatter, and type-checker expectations.
 
@@ -26,6 +32,8 @@ Implementation rules:
   safest project-consistent approach and note the tradeoff briefly.
 - If a convention is unclear, infer it from nearby code rather than asking
   broad questions.
+- For user-facing work, make error messages, edge states, and operator
+  interaction understandable rather than technically correct but opaque.
 
 Output:
 1. What standard or local pattern you followed

@@ -14,6 +14,9 @@ Rules:
 - Avoid repo-wide formatting or lint churn unless I explicitly ask for it.
 - If a tool fails due to environment or missing dependencies, state the exact
   blocker.
+- Never call a broken, skipped, or unavailable tool a pass.
+- For shell- or docs-heavy repos, include shell and documentation validation
+  where those files are part of the change.
 - If the repo already defines scripts or make targets, prefer those over
   ad hoc commands.
 

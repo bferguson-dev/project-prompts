@@ -5,8 +5,13 @@ Read only the minimum relevant prompt files for this task from
 `C:\Users\Byron\prompt-index.md`.
 
 Required baseline:
-- `C:\Users\Byron\session-policy-prompt.md`
+- `C:\Users\Byron\general-session-policy-prompt.md`
 - `C:\Users\Byron\project-governance-prompt.md`
+- `C:\Users\Byron\coding-standards-prompt.md`
+- `C:\Users\Byron\github-workflow-prompt.md`
+- `C:\Users\Byron\credentials-and-secrets-prompt.md`
+- `C:\Users\Byron\test-strategy-prompt.md`
+- `C:\Users\Byron\tooling-and-lint-prompt.md`
 
 Then read only the task-specific and constraint-specific prompt files that are
 actually relevant. Do not load every prompt file by default.
@@ -28,6 +33,7 @@ Working rules:
 - Keep explanations concise and technical.
 - Ask only one precise blocking question at a time.
 - Use safe, non-destructive Git practices.
+- Do not treat broken or skipped checks as passes.
 - Run targeted validation first and broader checks only when needed.
 
 At the end, report only:

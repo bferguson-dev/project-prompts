@@ -15,6 +15,7 @@ Requirements:
 - Provide step-by-step setup instructions.
 - Provide step-by-step run instructions.
 - Explain templates, special commands, options, and expected outputs.
+- Document the validation or quality gate workflow used to keep the repo safe.
 - Include a light troubleshooting section for common issues.
 - Include a known bugs or known limitations section.
 - Keep the tone practical, professional, and easy to scan.

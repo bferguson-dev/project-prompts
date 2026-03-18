@@ -6,10 +6,20 @@ relevant files.
 
 ## Core Files
 
-- [session-policy-prompt.md](C:\Users\Byron\session-policy-prompt.md)
+- [general-session-policy-prompt.md](C:\Users\Byron\general-session-policy-prompt.md)
   Use for almost every coding session.
 - [project-governance-prompt.md](C:\Users\Byron\project-governance-prompt.md)
   Use when you want senior-engineer ownership and QA-level output.
+- [coding-standards-prompt.md](C:\Users\Byron\coding-standards-prompt.md)
+  Use as the baseline coding-quality standard.
+- [github-workflow-prompt.md](C:\Users\Byron\github-workflow-prompt.md)
+  Use as the baseline Git and review workflow standard.
+- [credentials-and-secrets-prompt.md](C:\Users\Byron\credentials-and-secrets-prompt.md)
+  Use as the baseline secret-handling standard.
+- [test-strategy-prompt.md](C:\Users\Byron\test-strategy-prompt.md)
+  Use as the baseline test-planning standard.
+- [tooling-and-lint-prompt.md](C:\Users\Byron\tooling-and-lint-prompt.md)
+  Use as the baseline validation and tooling standard.
 - [session-start-cheatsheet.md](C:\Users\Byron\session-start-cheatsheet.md)
   Use to decide whether to keep the current session or start a new one.
 
@@ -43,11 +53,16 @@ relevant files.
 
 ## Recommended Usage
 
-For most sessions, tell the agent to read only:
+For baseline repo work, tell the agent to read at least:
 
-1. [session-policy-prompt.md](C:\Users\Byron\session-policy-prompt.md)
+1. [general-session-policy-prompt.md](C:\Users\Byron\general-session-policy-prompt.md)
 2. [project-governance-prompt.md](C:\Users\Byron\project-governance-prompt.md)
-3. One task prompt
-4. Optional constraint or documentation prompts only if relevant
+3. [coding-standards-prompt.md](C:\Users\Byron\coding-standards-prompt.md)
+4. [github-workflow-prompt.md](C:\Users\Byron\github-workflow-prompt.md)
+5. [credentials-and-secrets-prompt.md](C:\Users\Byron\credentials-and-secrets-prompt.md)
+6. [test-strategy-prompt.md](C:\Users\Byron\test-strategy-prompt.md)
+7. [tooling-and-lint-prompt.md](C:\Users\Byron\tooling-and-lint-prompt.md)
+8. One task prompt
+9. Optional constraint or documentation prompts only if relevant
 
-This keeps context use lower than loading every prompt file at the start.
+This is the repo's default high-assurance baseline.
