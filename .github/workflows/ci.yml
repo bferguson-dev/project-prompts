@@ -18,13 +18,32 @@ jobs:
           sudo make -C /tmp/git-secrets install
       - name: Install gitleaks
         run: |
-          curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/master/install.sh | sudo sh -s -- -b /usr/local/bin
+          set -euo pipefail
+          python - <<'PY' >/tmp/gitleaks-url
+          import json
+          import urllib.request
+
+          with urllib.request.urlopen(
+              "https://api.github.com/repos/gitleaks/gitleaks/releases/latest"
+          ) as response:
+              data = json.load(response)
+
+          version = data["tag_name"].lstrip("v")
+          print(
+              f"https://github.com/gitleaks/gitleaks/releases/download/"
+              f"{data['tag_name']}/gitleaks_{version}_linux_x64.tar.gz"
+          )
+          PY
+          curl -sSfL "$(cat /tmp/gitleaks-url)" -o /tmp/gitleaks.tar.gz
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
+          sudo install /tmp/gitleaks /usr/local/bin/gitleaks
       - name: Run repo gate
         env:
           ENABLE_SHELLCHECK_IF_AVAILABLE: "0"
           ENABLE_MARKDOWNLINT_IF_AVAILABLE: "0"
           RUN_GIT_SECRETS_HISTORY: "0"
           FAIL_ON_UNSTAGED_CHANGES: "0"
+          VENV_DIR: "/tmp/project-prompts-venv"
         run: ./check.sh
       - name: Run check.sh self-test
         run: tests/check_sh_selftest.sh
