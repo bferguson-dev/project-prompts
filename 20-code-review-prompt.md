@@ -1,5 +1,16 @@
 # Context-Efficient Code Review Prompt
 
+<!-- prompt-meta:start -->
+- Number: `20`
+- Kind: `task`
+- Tier: `task`
+- Status: `active`
+- Use when: the task is reviewing an existing change set.
+- Avoid when: you are expected to implement rather than review.
+- Overlaps with: `14-ship-readiness-prompt.md`, `13-security-review-prompt.md`
+- Owner intent: Keep review findings concrete, prioritized, and evidence-based.
+<!-- prompt-meta:end -->
+
 ```text
 Review this code in a context-efficient way.
 

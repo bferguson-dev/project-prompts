@@ -1,5 +1,16 @@
 # Context-Efficient Project Setup Prompt
 
+<!-- prompt-meta:start -->
+- Number: `16`
+- Kind: `task`
+- Tier: `task`
+- Status: `active`
+- Use when: the objective is initial setup or environment bring-up.
+- Avoid when: the project is already running and the task is a bug fix or feature.
+- Overlaps with: `17-project-setup-prompt-short.md`, `24-environment-constraints-prompt.md`
+- Owner intent: Drive deliberate setup work without broad environment cleanup drift.
+<!-- prompt-meta:end -->
+
 ```text
 Set up this project in a context-efficient way.
 

@@ -1,5 +1,16 @@
 # Documentation Standards Prompt
 
+<!-- prompt-meta:start -->
+- Number: `25`
+- Kind: `documentation`
+- Tier: `documentation`
+- Status: `active`
+- Use when: the task is writing or reviewing operational repository documentation.
+- Avoid when: the work is portfolio or GitHub Pages presentation rather than operational docs.
+- Overlaps with: `26-readme-authoring-prompt.md`, `27-legal-disclaimer-prompt.md`
+- Owner intent: Keep documentation operational, scannable, and useful for maintainers.
+<!-- prompt-meta:end -->
+
 ```text
 Write documentation like production documentation for infrastructure
 engineers, not like a portfolio or marketing page.

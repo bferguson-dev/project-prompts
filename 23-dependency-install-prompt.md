@@ -1,5 +1,16 @@
 # Dependency Install Prompt
 
+<!-- prompt-meta:start -->
+- Number: `23`
+- Kind: `process`
+- Tier: `constraint`
+- Status: `active`
+- Use when: you need guidance for installing or upgrading dependencies safely.
+- Avoid when: the task does not touch dependency installation.
+- Overlaps with: `10-tooling-and-lint-prompt.md`, `24-environment-constraints-prompt.md`
+- Owner intent: Keep dependency changes explicit, minimal, and verified.
+<!-- prompt-meta:end -->
+
 ```text
 Handle dependency installation conservatively and in line with project
 standards.

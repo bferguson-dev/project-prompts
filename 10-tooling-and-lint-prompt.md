@@ -1,5 +1,16 @@
 # Tooling And Lint Prompt
 
+<!-- prompt-meta:start -->
+- Number: `10`
+- Kind: `core`
+- Tier: `baseline`
+- Status: `active`
+- Use when: you need validation-order discipline and project-tool alignment.
+- Avoid when: the task has no applicable repo tooling.
+- Overlaps with: `06-coding-standards-prompt.md`, `09-test-strategy-prompt.md`
+- Owner intent: Use tooling as evidence and avoid repo-wide churn.
+<!-- prompt-meta:end -->
+
 ```text
 Use project tooling with a senior-engineer and QA-oriented workflow.
 

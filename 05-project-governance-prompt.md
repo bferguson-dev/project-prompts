@@ -1,5 +1,16 @@
 # Project Governance Prompt
 
+<!-- prompt-meta:start -->
+- Number: `05`
+- Kind: `core`
+- Tier: `baseline`
+- Status: `active`
+- Use when: you want stronger senior-engineer ownership and release-safety behavior.
+- Avoid when: the task is trivial and does not need a stronger governance overlay.
+- Overlaps with: `04-general-session-policy-prompt.md`, `14-ship-readiness-prompt.md`
+- Owner intent: Push the model toward defensible decisions and explicit risk ownership.
+<!-- prompt-meta:end -->
+
 ```text
 Act as the senior engineer responsible for code process, implementation
 quality, and QA-level output.

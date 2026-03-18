@@ -49,6 +49,7 @@ ENABLE_SHELLCHECK_IF_AVAILABLE="${ENABLE_SHELLCHECK_IF_AVAILABLE:-1}"
 ENABLE_MARKDOWN_LINK_CHECKS="${ENABLE_MARKDOWN_LINK_CHECKS:-1}"
 ENABLE_MARKDOWNLINT_IF_AVAILABLE="${ENABLE_MARKDOWNLINT_IF_AVAILABLE:-1}"
 ENABLE_CONFIG_SYNTAX_CHECKS="${ENABLE_CONFIG_SYNTAX_CHECKS:-1}"
+RUN_PROMPT_CHECKS="${RUN_PROMPT_CHECKS:-1}"
 STRICT_MODE="${STRICT_MODE:-0}"
 FAIL_ON_MISSING_OPTIONAL_TOOLS="${FAIL_ON_MISSING_OPTIONAL_TOOLS:-0}"
 
@@ -135,6 +136,10 @@ have_command() {
 have_python_tool() {
   local module="$1"
   "$VENV_PYTHON" -m "$module" --help >/dev/null 2>&1
+}
+
+have_prompt_repo() {
+  [[ -f "prompt_catalog.json" && -f "scripts/lint_prompts.py" && -f "scripts/sync_prompt_docs.py" ]]
 }
 
 run_optional_command() {
@@ -521,22 +526,54 @@ run_git_checks() {
   fi
 
   if [[ "$RUN_GIT_SECRETS_CACHED" == "1" ]]; then
-    if git secrets --scan --cached >/dev/null 2>&1; then
-      echo "OK: git-secrets cached scan passed"
+    if have_command git-secrets; then
+      if git secrets --scan --cached >/dev/null 2>&1; then
+        echo "OK: git-secrets cached scan passed"
+      else
+        echo "FAIL: git-secrets cached scan found a problem."
+        return 21
+      fi
+    elif [[ "$FAIL_ON_MISSING_OPTIONAL_TOOLS" == "1" ]]; then
+      echo "FAIL: git-secrets is required in strict mode."
+      return 31
     else
-      echo "FAIL: git-secrets cached scan found a problem."
-      return 21
+      echo "[git] WARN: git-secrets not installed; skipping cached scan."
     fi
   fi
 
   if [[ "$RUN_GIT_SECRETS_HISTORY" == "1" ]]; then
-    if git secrets --scan-history >/dev/null 2>&1; then
-      echo "OK: git-secrets history scan passed"
+    if have_command git-secrets; then
+      if git secrets --scan-history >/dev/null 2>&1; then
+        echo "OK: git-secrets history scan passed"
+      else
+        echo "FAIL: git-secrets history scan found a problem."
+        return 22
+      fi
+    elif [[ "$FAIL_ON_MISSING_OPTIONAL_TOOLS" == "1" ]]; then
+      echo "FAIL: git-secrets is required in strict mode."
+      return 32
     else
-      echo "FAIL: git-secrets history scan found a problem."
-      return 22
+      echo "[git] WARN: git-secrets not installed; skipping history scan."
     fi
   fi
+}
+
+run_prompt_checks() {
+  if [[ "$RUN_PROMPT_CHECKS" != "1" ]]; then
+    echo "[prompts] Prompt checks disabled"
+    return 0
+  fi
+
+  if ! have_prompt_repo; then
+    echo "[prompts] No prompt catalog detected; skipping prompt-specific checks."
+    return 0
+  fi
+
+  echo "[prompts] sync generated docs and metadata"
+  "$VENV_PYTHON" scripts/sync_prompt_docs.py
+
+  echo "[prompts] lint prompt catalog"
+  "$VENV_PYTHON" scripts/lint_prompts.py
 }
 
 # =========================
@@ -773,6 +810,8 @@ if [[ "$ENABLE_CONFIG_SYNTAX_CHECKS" == "1" ]]; then
   echo "[config] syntax check"
   check_config_syntax
 fi
+
+run_prompt_checks
 
 # =========================
 # Step: tests

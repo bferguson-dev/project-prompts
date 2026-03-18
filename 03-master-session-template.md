@@ -1,5 +1,16 @@
 # Master Session Template
 
+<!-- prompt-meta:start -->
+- Number: `03`
+- Kind: `navigation`
+- Tier: `navigation`
+- Status: `active`
+- Use when: you want a structured handoff or repeatable session start template.
+- Avoid when: a lightweight prompt reference is enough.
+- Overlaps with: `01-prompt-index.md`, `02-session-start-cheatsheet.md`
+- Owner intent: Provide a copy-ready session scaffold for higher-discipline handoffs.
+<!-- prompt-meta:end -->
+
 ```text
 Read only the minimum relevant prompt files for this task from
 `<PROMPT_HOME>\01-prompt-index.md`.

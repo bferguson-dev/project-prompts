@@ -2,6 +2,13 @@
 
 ## 2026-03-18
 
+- Added `prompt_catalog.json`, `VERSION`, generated prompt metadata blocks, and
+  prompt-doc sync/lint scripts as the source-of-truth system for prompt
+  ordering and descriptions.
+- Added `PROMPT_POLICY.md` with versioning, lifecycle, deprecation, breaking
+  change, and downstream-sync rules.
+- Added repo-local `gitleaks` config, a tracked pre-commit hook, pytest-based
+  prompt consistency tests, and a GitHub Actions CI workflow.
 - Standardized the prompt index and README ordering around numbered filenames.
 - Established one fixed legal disclaimer phrase for reuse across repositories.
 - Established the prompt kit baseline and QA gate.

@@ -1,5 +1,16 @@
 # Coding Standards Prompt
 
+<!-- prompt-meta:start -->
+- Number: `06`
+- Kind: `core`
+- Tier: `baseline`
+- Status: `active`
+- Use when: you need local-pattern-preserving implementation standards.
+- Avoid when: the task is purely planning or non-code process work.
+- Overlaps with: `04-general-session-policy-prompt.md`, `10-tooling-and-lint-prompt.md`
+- Owner intent: Keep changes small, readable, and consistent with the surrounding codebase.
+<!-- prompt-meta:end -->
+
 ```text
 Apply and preserve strong coding standards while staying context-efficient.
 

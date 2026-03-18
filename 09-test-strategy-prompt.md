@@ -1,5 +1,16 @@
 # Test Strategy Prompt
 
+<!-- prompt-meta:start -->
+- Number: `09`
+- Kind: `core`
+- Tier: `baseline`
+- Status: `active`
+- Use when: you need explicit test-scope reasoning and layered validation choices.
+- Avoid when: the task is purely documentation or policy work with no behavior change.
+- Overlaps with: `10-tooling-and-lint-prompt.md`, `11-adversarial-testing-prompt.md`
+- Owner intent: Make test scope intentional instead of defaulting to broad or shallow validation.
+<!-- prompt-meta:end -->
+
 ```text
 Add or update tests with a QA-oriented and scope-controlled workflow.
 

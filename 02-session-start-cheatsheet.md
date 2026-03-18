@@ -1,5 +1,16 @@
 # Session Start Cheatsheet
 
+<!-- prompt-meta:start -->
+- Number: `02`
+- Kind: `navigation`
+- Tier: `navigation`
+- Status: `active`
+- Use when: you need a quick decision aid for choosing a task prompt or deciding whether to start a new session.
+- Avoid when: the session already has a clear, stable task prompt.
+- Overlaps with: `01-prompt-index.md`, `03-master-session-template.md`
+- Owner intent: Reduce session churn and prompt sprawl by steering users to one clear work mode.
+<!-- prompt-meta:end -->
+
 Use one prompt per meaningful objective. Keep the session focused on a single workstream until the files, goal, or subsystem materially change.
 
 ## Which Prompt To Use

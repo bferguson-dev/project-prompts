@@ -1,5 +1,16 @@
 # GitHub Workflow Prompt
 
+<!-- prompt-meta:start -->
+- Number: `07`
+- Kind: `core`
+- Tier: `baseline`
+- Status: `active`
+- Use when: you want default Git, PR, and review workflow expectations.
+- Avoid when: Git or review workflow is out of scope for the task.
+- Overlaps with: `05-project-governance-prompt.md`, `08-credentials-and-secrets-prompt.md`
+- Owner intent: Keep Git usage safe, reviewable, and compatible with a normal team workflow.
+<!-- prompt-meta:end -->
+
 ```text
 Work with Git and GitHub using a safe, professional, review-friendly process.
 

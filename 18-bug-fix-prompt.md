@@ -1,5 +1,16 @@
 # Context-Efficient Bug Fix Prompt
 
+<!-- prompt-meta:start -->
+- Number: `18`
+- Kind: `task`
+- Tier: `task`
+- Status: `active`
+- Use when: the objective is diagnosing and fixing a bug with minimal scope.
+- Avoid when: the task is feature development or broad refactoring.
+- Overlaps with: `22-debugging-handoff-prompt.md`, `21-refactor-prompt.md`
+- Owner intent: Bias toward narrow, targeted bug fixes and clear verification.
+<!-- prompt-meta:end -->
+
 ```text
 Fix this bug in a context-efficient way.
 

@@ -1,5 +1,16 @@
 # GitHub Pages Repo Style Prompt
 
+<!-- prompt-meta:start -->
+- Number: `28`
+- Kind: `documentation`
+- Tier: `documentation`
+- Status: `active`
+- Use when: the repo is a GitHub Pages or public-facing presentation site.
+- Avoid when: the repo is internal or operational rather than presentation-focused.
+- Overlaps with: `29-portfolio-project-page-prompt.md`, `25-documentation-standards-prompt.md`
+- Owner intent: Provide public-site style rules without contaminating operational repo docs.
+<!-- prompt-meta:end -->
+
 ```text
 When working in a personal GitHub Pages portfolio repo, follow the established
 site style and page structure instead of inventing a new pattern.

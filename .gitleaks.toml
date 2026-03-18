@@ -1,0 +1,14 @@
+title = "project-prompts gitleaks config"
+
+[allowlist]
+description = "Allow example placeholders and docs-only sample identifiers"
+paths = [
+  '''tests/fixtures/check-sh/.*''',
+  '''README\.md''',
+  '''PROMPT_POLICY\.md'''
+]
+regexes = [
+  '''example\.invalid''',
+  '''<PROMPT_HOME>''',
+  '''SECRET_VAULT_PASSWORD'''
+]

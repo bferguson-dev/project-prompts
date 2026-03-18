@@ -1,5 +1,16 @@
 # General Session Policy Prompt
 
+<!-- prompt-meta:start -->
+- Number: `04`
+- Kind: `core`
+- Tier: `baseline`
+- Status: `active`
+- Use when: you need the default engineering behavior for most coding sessions.
+- Avoid when: you are only looking for a task-specific template without baseline operating rules.
+- Overlaps with: `05-project-governance-prompt.md`, `06-coding-standards-prompt.md`
+- Owner intent: Set the baseline QA, safety, and execution rules without forcing unnecessary repo exploration.
+<!-- prompt-meta:end -->
+
 ```text
 Work like a senior software engineer with strong QA discipline.
 

@@ -1,5 +1,16 @@
 # Environment Constraints Prompt
 
+<!-- prompt-meta:start -->
+- Number: `24`
+- Kind: `process`
+- Tier: `constraint`
+- Status: `active`
+- Use when: the task depends on platform, runtime, or environment constraints.
+- Avoid when: environment details do not materially affect the work.
+- Overlaps with: `16-project-setup-prompt.md`, `23-dependency-install-prompt.md`
+- Owner intent: Prevent unnecessary setup churn and respect the repo's intended runtime.
+<!-- prompt-meta:end -->
+
 ```text
 Honor the project's environment constraints and avoid unnecessary setup churn.
 

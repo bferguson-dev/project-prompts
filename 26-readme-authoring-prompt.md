@@ -1,5 +1,16 @@
 # README Authoring Prompt
 
+<!-- prompt-meta:start -->
+- Number: `26`
+- Kind: `documentation`
+- Tier: `documentation`
+- Status: `active`
+- Use when: the task specifically targets a repository README.
+- Avoid when: the work is non-README documentation or public portfolio presentation.
+- Overlaps with: `25-documentation-standards-prompt.md`, `27-legal-disclaimer-prompt.md`
+- Owner intent: Specialize README guidance without bloating the general docs prompt.
+<!-- prompt-meta:end -->
+
 ```text
 Write or update the README as production-style operational documentation.
 

@@ -1,5 +1,16 @@
 # Refactor Prompt
 
+<!-- prompt-meta:start -->
+- Number: `21`
+- Kind: `task`
+- Tier: `task`
+- Status: `active`
+- Use when: the work is improving structure without changing intended behavior.
+- Avoid when: the task is actually a feature or bug fix hiding behind a refactor label.
+- Overlaps with: `19-feature-work-prompt.md`, `18-bug-fix-prompt.md`
+- Owner intent: Keep refactors behavior-preserving, reviewable, and justified.
+<!-- prompt-meta:end -->
+
 ```text
 Refactor this code with strong safety and minimal context usage.
 

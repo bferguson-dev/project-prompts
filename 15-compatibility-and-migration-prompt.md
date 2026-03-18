@@ -1,5 +1,16 @@
 # Compatibility And Migration Prompt
 
+<!-- prompt-meta:start -->
+- Number: `15`
+- Kind: `risk-overlay`
+- Tier: `overlay`
+- Status: `active`
+- Use when: interfaces, configs, schemas, or workflows might break consumers.
+- Avoid when: there is no downstream consumer or migration impact.
+- Overlaps with: `12-reliability-and-recovery-prompt.md`, `14-ship-readiness-prompt.md`
+- Owner intent: Force migration and compatibility thinking before changes spread damage downstream.
+<!-- prompt-meta:end -->
+
 ```text
 Review the change for compatibility risk and migration safety.
 

@@ -3,6 +3,8 @@
 This repo is a practical prompt kit for running engineering work with better
 judgment, tighter QA, and less avoidable mess.
 
+Current prompt-kit version: `2026.03.18.2`.
+
 The goal is not to load everything at once. The goal is to load the minimum
 set of prompts that gives a coding agent the right operating rules for the
 task in front of it.
@@ -18,14 +20,8 @@ For baseline repo work, use this core pack:
 5. `08-credentials-and-secrets-prompt.md`
 6. `09-test-strategy-prompt.md`
 7. `10-tooling-and-lint-prompt.md`
-8. `11-adversarial-testing-prompt.md`
-9. `12-reliability-and-recovery-prompt.md`
-10. `13-security-review-prompt.md`
-11. `14-ship-readiness-prompt.md`
-12. `15-compatibility-and-migration-prompt.md`
-
-Then add one task prompt and only the extra constraint or documentation prompts
-that are actually relevant.
+8. Add `11` to `15` when risk, compatibility, or release readiness matter
+9. Add one task prompt from `16` to `22`
 
 If you want a file-based entry point, start with `01-prompt-index.md`.
 
@@ -34,42 +30,53 @@ The leading numbers indicate recommended load order and relative importance:
 - `01` to `03`: navigation and session-start helpers
 - `04` to `10`: baseline operating rules
 - `11` to `15`: risk-focused overlays for stronger review depth
-- `16` and above: task- or domain-specific prompts
+- `16` to `22`: task-specific prompts
+- `23` to `24`: process and environment constraints
+- `25` to `29`: documentation and presentation prompts
+
+## Compatibility Table
+
+| Range | Role | Default |
+|---|---|---|
+| `01-03` | Navigation helpers | Optional |
+| `04-10` | Baseline operating rules | Default for most repo work |
+| `11-15` | Risk overlays | Add for higher-risk or shippable work |
+| `16-22` | Task prompts | Choose one per objective |
+| `23-24` | Constraints | Add only when directly relevant |
+| `25-29` | Documentation and presentation | Add only when docs or presentation are in scope |
 
 ## Core Files
 
-- `02-session-start-cheatsheet.md`
-  Quick chooser for deciding whether to keep the current session or start a
-  new one.
 - `01-prompt-index.md`
-  Fast map of what prompt to load and when.
+  Use when you need the fastest file-based entry point into the prompt kit.
+- `02-session-start-cheatsheet.md`
+  Use when you need a quick decision aid for choosing a task prompt or deciding whether to start a new session.
 - `03-master-session-template.md`
-  A ready-to-fill session template for more structured starts.
+  Use when you want a structured handoff or repeatable session start template.
 - `04-general-session-policy-prompt.md`
-  Baseline operating rules for almost every coding session.
+  Use when you need the default engineering behavior for most coding sessions.
 - `05-project-governance-prompt.md`
-  Pushes for senior-engineer ownership, QA discipline, and good judgment.
+  Use when you want stronger senior-engineer ownership and release-safety behavior.
 - `06-coding-standards-prompt.md`
-  Baseline coding rules for safe, maintainable, understandable changes.
+  Use when you need local-pattern-preserving implementation standards.
 - `07-github-workflow-prompt.md`
-  Baseline Git and review workflow rules.
+  Use when you want default Git, PR, and review workflow expectations.
 - `08-credentials-and-secrets-prompt.md`
-  Baseline secret-handling and least-exposure rules.
+  Use when the work touches secrets, credentials, tokens, keys, or sensitive configs.
 - `09-test-strategy-prompt.md`
-  Baseline testing-layer expectations.
+  Use when you need explicit test-scope reasoning and layered validation choices.
 - `10-tooling-and-lint-prompt.md`
-  Baseline validation and tooling expectations.
+  Use when you need validation-order discipline and project-tool alignment.
 - `11-adversarial-testing-prompt.md`
-  Forces deliberate break-it thinking instead of happy-path-only validation.
+  Use when you want break-it thinking for risky or exposed changes.
 - `12-reliability-and-recovery-prompt.md`
-  Forces restart, retry, recovery, and partial-failure review.
+  Use when restart safety, retries, rollback, or partial failure matter.
 - `13-security-review-prompt.md`
-  Forces trust-boundary and exposure review on risky work.
+  Use when trust boundaries, auth, secrets, or exposure risk are central.
 - `14-ship-readiness-prompt.md`
-  Forces an evidence-based go/no-go view instead of assuming green checks mean
-  release readiness.
+  Use when you need an evidence-based go/no-go judgment.
 - `15-compatibility-and-migration-prompt.md`
-  Forces review of compatibility risk, migration steps, and rollback concerns.
+  Use when interfaces, configs, schemas, or workflows might break consumers.
 
 ## Task Prompts
 
@@ -86,21 +93,49 @@ Use the task prompt that matches the current objective:
 Then add only the relevant supporting prompts for standards, workflow,
 secrets, environment constraints, docs, or repo style.
 
-For high-risk or shippable work, add:
+## Prompt Bundles
 
-- `11-adversarial-testing-prompt.md`
-- `12-reliability-and-recovery-prompt.md`
-- `13-security-review-prompt.md`
-- `14-ship-readiness-prompt.md`
-- `15-compatibility-and-migration-prompt.md`
+- Small bug fix: `04`, `06`, `09`, `10`, `18`
+- Security-sensitive feature: `04`, `05`, `08`, `09`, `10`, `11`, `13`, `19`
+- Ship-readiness pass: `04`, `05`, `09`, `10`, `12`, `14`, `15`, `20`
+- Documentation refresh: `04`, `25`, `26`, `27`
 
-The prompt set is intentionally scoped to avoid unnecessary overlap:
+## Anti-Patterns
 
-- baseline files set default operating rules
-- risk overlays deepen review for shippable or exposed work
-- task prompts define the immediate work mode
-- documentation prompts are split between general docs, README-specific work,
-  and portfolio-specific presentation
+- Loading every prompt by default instead of choosing a scoped bundle
+- Using multiple task prompts for one objective instead of picking one work mode
+- Treating overlays as baseline requirements for trivial changes
+- Rewriting the canonical legal disclaimer instead of reusing it verbatim
+- Renaming numbered files without updating the catalog, index, README, and changelog together
+
+## Update Safely
+
+1. Edit `prompt_catalog.json` first.
+2. Run `python scripts/sync_prompt_docs.py`.
+3. Run `python scripts/lint_prompts.py`.
+4. Run `./check.sh`.
+5. Review `git diff --cached`.
+6. Record policy-level changes in `CHANGELOG.md`.
+
+## Prompt Lifecycle
+
+- `active`: current and recommended
+- `deprecated`: still present for compatibility, but not preferred for new usage
+- `archived`: retained for history only
+
+See `PROMPT_POLICY.md` for numbering, deprecation, breaking-change, and
+downstream-sync rules.
+
+## Secret Scanning
+
+This repo includes `.gitleaks.toml` and `.githooks/pre-commit` so staged
+changes can be scanned consistently.
+
+One-time setup:
+
+```bash
+git config core.hooksPath .githooks
+```
 
 ## Workflow Defaults
 
@@ -115,17 +150,13 @@ This repo assumes:
 - no false passes on broken or skipped validation
 - usability and operator clarity matter, not just raw correctness
 
-Before commit, the expected workflow is:
+## Downstream Consumer Checklist
 
-1. Review `git diff --cached`
-2. Run `git secrets` against pending changes
-3. Check for accidental file-mode or executable-bit changes
-4. Run targeted validation
-5. Commit
-6. Push
-
-If GPG signing blocks a commit, the workflow is to wait for the user's approval or
-passphrase flow before falling back to unsigned commit behavior.
+1. Record the prompt-kit version or commit you are using.
+2. Reuse the canonical disclaimer text from `27-legal-disclaimer-prompt.md` verbatim.
+3. Keep numbered filenames intact when referencing prompt files.
+4. Treat local prompt changes as explicit deviations.
+5. Re-run downstream validation after sync.
 
 ## `check.sh`
 
@@ -144,17 +175,15 @@ It currently covers:
 - dependency auditing
 - shell-script linting when available
 - Markdown style and relative-link checks when available
+- prompt-catalog generation and lint checks
 - test-layer reporting for unit, integration, system, acceptance, regression,
   performance/load, usability, and security concerns
 - Git hygiene checks around staged diffs, secret exposure, and file modes
-- staged-diff heuristics for merge markers, debug prints, TODO-style markers,
+- staged-diff heuristics for merge markers, debug prints, task-note markers,
   suspicious local paths, and accidental artifacts
 - config syntax validation for JSON, YAML, and TOML
 - optional strict-mode behavior that can fail when key doc or shell tools are
   missing
-
-It is designed to be reusable across projects, with environment variables for
-test paths and optional commands where a project has non-pytest validation.
 
 ## Placeholder Convention
 

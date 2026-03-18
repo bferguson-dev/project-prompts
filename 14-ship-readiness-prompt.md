@@ -1,5 +1,16 @@
 # Ship Readiness Prompt
 
+<!-- prompt-meta:start -->
+- Number: `14`
+- Kind: `risk-overlay`
+- Tier: `overlay`
+- Status: `active`
+- Use when: you need an evidence-based go/no-go judgment.
+- Avoid when: the work is exploratory and not near a ship decision.
+- Overlaps with: `05-project-governance-prompt.md`, `12-reliability-and-recovery-prompt.md`
+- Owner intent: Prevent green-check theater by forcing explicit readiness criteria.
+<!-- prompt-meta:end -->
+
 ```text
 Judge whether the change is actually ready to ship, not just whether it is
 well-written.

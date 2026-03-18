@@ -1,5 +1,16 @@
 # Portfolio Project Page Prompt
 
+<!-- prompt-meta:start -->
+- Number: `29`
+- Kind: `documentation`
+- Tier: `documentation`
+- Status: `active`
+- Use when: the work is a hiring-facing project page or portfolio artifact.
+- Avoid when: the repo documentation should remain purely operational.
+- Overlaps with: `28-github-pages-repo-style-prompt.md`, `25-documentation-standards-prompt.md`
+- Owner intent: Allow presentation-focused writing only where portfolio goals explicitly justify it.
+<!-- prompt-meta:end -->
+
 ```text
 When a project is complete enough to serve as a portfolio piece, create or
 update a subpage for it in my GitHub Pages resume site.

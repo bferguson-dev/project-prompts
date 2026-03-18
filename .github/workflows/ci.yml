@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install git-secrets
+        run: |
+          git clone https://github.com/awslabs/git-secrets.git /tmp/git-secrets
+          sudo make -C /tmp/git-secrets install
+      - name: Install gitleaks
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/master/install.sh | sudo sh -s -- -b /usr/local/bin
+      - name: Run repo gate
+        env:
+          ENABLE_SHELLCHECK_IF_AVAILABLE: "0"
+          ENABLE_MARKDOWNLINT_IF_AVAILABLE: "0"
+          RUN_GIT_SECRETS_HISTORY: "0"
+          FAIL_ON_UNSTAGED_CHANGES: "0"
+        run: ./check.sh
+      - name: Run check.sh self-test
+        run: tests/check_sh_selftest.sh

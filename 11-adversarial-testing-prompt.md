@@ -1,5 +1,16 @@
 # Adversarial Testing Prompt
 
+<!-- prompt-meta:start -->
+- Number: `11`
+- Kind: `risk-overlay`
+- Tier: `overlay`
+- Status: `active`
+- Use when: you want break-it thinking for risky or exposed changes.
+- Avoid when: the task is too small or low-risk to justify adversarial review overhead.
+- Overlaps with: `09-test-strategy-prompt.md`, `13-security-review-prompt.md`
+- Owner intent: Counter happy-path bias by forcing deliberate attempts to break the work.
+<!-- prompt-meta:end -->
+
 ```text
 Test the change like an experienced engineer trying to break it on purpose.
 

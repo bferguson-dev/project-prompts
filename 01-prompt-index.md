@@ -1,37 +1,65 @@
 # Prompt Index
 
+<!-- prompt-meta:start -->
+- Number: `01`
+- Kind: `navigation`
+- Tier: `navigation`
+- Status: `active`
+- Use when: you need the fastest file-based entry point into the prompt kit.
+- Avoid when: the user already named the exact prompt files to load.
+- Overlaps with: `02-session-start-cheatsheet.md`, `03-master-session-template.md`
+- Owner intent: Provide the lowest-friction map for loading only the minimum useful prompt context.
+<!-- prompt-meta:end -->
+
 Use this index when starting a session by file reference instead of pasting
 large prompt blocks. The intent is to let the agent read only the minimum
 relevant files.
 
-## Core Files
+## Navigation And Session Start
 
 - [02-session-start-cheatsheet.md](<PROMPT_HOME>\02-session-start-cheatsheet.md)
-  Use to decide whether to keep the current session or start a new one.
+  Use when you need a quick decision aid for choosing a task prompt or deciding whether to start a new session.
+
+- [03-master-session-template.md](<PROMPT_HOME>\03-master-session-template.md)
+  Use when you want a structured handoff or repeatable session start template.
+
+## Core Files
+
 - [04-general-session-policy-prompt.md](<PROMPT_HOME>\04-general-session-policy-prompt.md)
-  Use for almost every coding session.
+  Use when you need the default engineering behavior for most coding sessions.
+
 - [05-project-governance-prompt.md](<PROMPT_HOME>\05-project-governance-prompt.md)
-  Use when you want senior-engineer ownership and QA-level output.
+  Use when you want stronger senior-engineer ownership and release-safety behavior.
+
 - [06-coding-standards-prompt.md](<PROMPT_HOME>\06-coding-standards-prompt.md)
-  Use as the baseline coding-quality standard.
+  Use when you need local-pattern-preserving implementation standards.
+
 - [07-github-workflow-prompt.md](<PROMPT_HOME>\07-github-workflow-prompt.md)
-  Use as the baseline Git and review workflow standard.
+  Use when you want default Git, PR, and review workflow expectations.
+
 - [08-credentials-and-secrets-prompt.md](<PROMPT_HOME>\08-credentials-and-secrets-prompt.md)
-  Use as the baseline secret-handling standard.
+  Use when the work touches secrets, credentials, tokens, keys, or sensitive configs.
+
 - [09-test-strategy-prompt.md](<PROMPT_HOME>\09-test-strategy-prompt.md)
-  Use as the baseline test-planning standard.
+  Use when you need explicit test-scope reasoning and layered validation choices.
+
 - [10-tooling-and-lint-prompt.md](<PROMPT_HOME>\10-tooling-and-lint-prompt.md)
-  Use as the baseline validation and tooling standard.
+  Use when you need validation-order discipline and project-tool alignment.
+
 - [11-adversarial-testing-prompt.md](<PROMPT_HOME>\11-adversarial-testing-prompt.md)
-  Use when the work should be tested like someone is actively trying to break it.
+  Use when you want break-it thinking for risky or exposed changes.
+
 - [12-reliability-and-recovery-prompt.md](<PROMPT_HOME>\12-reliability-and-recovery-prompt.md)
-  Use when restart safety, retries, partial failure, or rollback matter.
+  Use when restart safety, retries, rollback, or partial failure matter.
+
 - [13-security-review-prompt.md](<PROMPT_HOME>\13-security-review-prompt.md)
-  Use when trust boundaries, secrets, auth, or exposure risk matter.
+  Use when trust boundaries, auth, secrets, or exposure risk are central.
+
 - [14-ship-readiness-prompt.md](<PROMPT_HOME>\14-ship-readiness-prompt.md)
-  Use when deciding whether work is actually ready to ship.
+  Use when you need an evidence-based go/no-go judgment.
+
 - [15-compatibility-and-migration-prompt.md](<PROMPT_HOME>\15-compatibility-and-migration-prompt.md)
-  Use when config, APIs, schemas, env vars, or workflows may break consumers.
+  Use when interfaces, configs, schemas, or workflows might break consumers.
 
 ## Task Prompts
 
@@ -45,10 +73,6 @@ relevant files.
 
 ## Process And Constraints
 
-- [06-coding-standards-prompt.md](<PROMPT_HOME>\06-coding-standards-prompt.md)
-- [07-github-workflow-prompt.md](<PROMPT_HOME>\07-github-workflow-prompt.md)
-- [08-credentials-and-secrets-prompt.md](<PROMPT_HOME>\08-credentials-and-secrets-prompt.md)
-- [10-tooling-and-lint-prompt.md](<PROMPT_HOME>\10-tooling-and-lint-prompt.md)
 - [23-dependency-install-prompt.md](<PROMPT_HOME>\23-dependency-install-prompt.md)
 - [24-environment-constraints-prompt.md](<PROMPT_HOME>\24-environment-constraints-prompt.md)
 
@@ -71,8 +95,8 @@ For baseline repo work, tell the agent to read at least:
 5. [08-credentials-and-secrets-prompt.md](<PROMPT_HOME>\08-credentials-and-secrets-prompt.md)
 6. [09-test-strategy-prompt.md](<PROMPT_HOME>\09-test-strategy-prompt.md)
 7. [10-tooling-and-lint-prompt.md](<PROMPT_HOME>\10-tooling-and-lint-prompt.md)
-8. One task prompt
-9. Add [11-adversarial-testing-prompt.md](<PROMPT_HOME>\11-adversarial-testing-prompt.md), [12-reliability-and-recovery-prompt.md](<PROMPT_HOME>\12-reliability-and-recovery-prompt.md), [13-security-review-prompt.md](<PROMPT_HOME>\13-security-review-prompt.md), [14-ship-readiness-prompt.md](<PROMPT_HOME>\14-ship-readiness-prompt.md), and [15-compatibility-and-migration-prompt.md](<PROMPT_HOME>\15-compatibility-and-migration-prompt.md) for high-risk or shippable work
-10. Optional constraint or documentation prompts only if relevant
+8. One task prompt from `16` to `22`
+9. Add `11` to `15` for high-risk or shippable work
+10. Add process or documentation prompts only when they are directly relevant
 
 This is the repo's default high-assurance baseline.

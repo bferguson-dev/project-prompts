@@ -1,5 +1,16 @@
 # Reliability And Recovery Prompt
 
+<!-- prompt-meta:start -->
+- Number: `12`
+- Kind: `risk-overlay`
+- Tier: `overlay`
+- Status: `active`
+- Use when: restart safety, retries, rollback, or partial failure matter.
+- Avoid when: the task has no meaningful failure-recovery dimension.
+- Overlaps with: `14-ship-readiness-prompt.md`, `15-compatibility-and-migration-prompt.md`
+- Owner intent: Surface operational resilience concerns before shipping.
+<!-- prompt-meta:end -->
+
 ```text
 Review and validate the change for reliability, restart safety, and recovery.
 

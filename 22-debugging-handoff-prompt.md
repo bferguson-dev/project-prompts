@@ -1,5 +1,16 @@
 # Debugging Handoff Prompt
 
+<!-- prompt-meta:start -->
+- Number: `22`
+- Kind: `task`
+- Tier: `task`
+- Status: `active`
+- Use when: you need to hand off a debugging thread cleanly to another session or agent.
+- Avoid when: there is no active debugging context to transfer.
+- Overlaps with: `18-bug-fix-prompt.md`, `03-master-session-template.md`
+- Owner intent: Capture the minimum debugging context needed for a clean restart.
+<!-- prompt-meta:end -->
+
 ```text
 Debug this issue with a narrow, evidence-driven workflow.
 

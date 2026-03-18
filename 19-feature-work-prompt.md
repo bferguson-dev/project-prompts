@@ -1,5 +1,16 @@
 # Context-Efficient Feature Work Prompt
 
+<!-- prompt-meta:start -->
+- Number: `19`
+- Kind: `task`
+- Tier: `task`
+- Status: `active`
+- Use when: the objective is adding or extending product behavior.
+- Avoid when: the work is primarily debugging or review-only.
+- Overlaps with: `21-refactor-prompt.md`, `20-code-review-prompt.md`
+- Owner intent: Keep feature work scoped, validated, and aligned with local patterns.
+<!-- prompt-meta:end -->
+
 ```text
 Implement this feature in a context-efficient way.
 

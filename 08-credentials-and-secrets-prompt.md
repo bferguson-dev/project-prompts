@@ -1,5 +1,16 @@
 # Credentials And Secrets Prompt
 
+<!-- prompt-meta:start -->
+- Number: `08`
+- Kind: `core`
+- Tier: `baseline`
+- Status: `active`
+- Use when: the work touches secrets, credentials, tokens, keys, or sensitive configs.
+- Avoid when: the task is clearly unrelated to secrets handling.
+- Overlaps with: `07-github-workflow-prompt.md`, `13-security-review-prompt.md`
+- Owner intent: Force least-exposure habits and prevent accidental secret leakage.
+<!-- prompt-meta:end -->
+
 ```text
 Handle credentials and secrets with a strict least-exposure workflow.
 

@@ -1,5 +1,16 @@
 # Security Review Prompt
 
+<!-- prompt-meta:start -->
+- Number: `13`
+- Kind: `risk-overlay`
+- Tier: `overlay`
+- Status: `active`
+- Use when: trust boundaries, auth, secrets, or exposure risk are central.
+- Avoid when: the change is clearly internal and low-risk.
+- Overlaps with: `08-credentials-and-secrets-prompt.md`, `11-adversarial-testing-prompt.md`
+- Owner intent: Demand explicit security reasoning instead of vague confidence.
+<!-- prompt-meta:end -->
+
 ```text
 Review the change like a senior engineer responsible for trust boundaries and
 exposure risk.
