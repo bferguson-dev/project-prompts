@@ -48,6 +48,14 @@ USABILITY_TEST_CMD="${USABILITY_TEST_CMD:-}"
 ENABLE_SHELLCHECK_IF_AVAILABLE="${ENABLE_SHELLCHECK_IF_AVAILABLE:-1}"
 ENABLE_MARKDOWN_LINK_CHECKS="${ENABLE_MARKDOWN_LINK_CHECKS:-1}"
 ENABLE_MARKDOWNLINT_IF_AVAILABLE="${ENABLE_MARKDOWNLINT_IF_AVAILABLE:-1}"
+ENABLE_CONFIG_SYNTAX_CHECKS="${ENABLE_CONFIG_SYNTAX_CHECKS:-1}"
+STRICT_MODE="${STRICT_MODE:-0}"
+FAIL_ON_MISSING_OPTIONAL_TOOLS="${FAIL_ON_MISSING_OPTIONAL_TOOLS:-0}"
+
+if [[ "$STRICT_MODE" == "1" ]]; then
+  FAIL_ON_MISSING_OPTIONAL_TOOLS=1
+  RUN_GIT_SECRETS_HISTORY=1
+fi
 
 # =========================
 # Step: repo root + venv
@@ -100,7 +108,7 @@ echo "[setup] Upgrading pip + installing tooling"
 if ! "$VENV_PYTHON" -m pip install -U pip >/dev/null 2>&1; then
   echo "[setup] WARN: Could not upgrade pip (likely offline); continuing with existing pip."
 fi
-if ! "$VENV_PYTHON" -m pip install -U ruff bandit pip-audit pytest >/dev/null 2>&1; then
+if ! "$VENV_PYTHON" -m pip install -U ruff bandit pip-audit pytest pyyaml >/dev/null 2>&1; then
   echo "[setup] WARN: Could not install tooling from index (likely offline); using locally available tools only."
 fi
 
@@ -139,6 +147,23 @@ run_optional_command() {
 
   echo "[tests] ${label}: $cmd"
   bash -lc "$cmd"
+}
+
+run_pytest_target() {
+  local label="$1"
+  shift
+
+  set +e
+  "$VENV_PYTHON" -m pytest -q "$@"
+  local rc=$?
+  set -e
+
+  if [[ "$rc" == "5" ]]; then
+    echo "[tests] ${label}: no tests collected"
+    return 0
+  fi
+
+  return "$rc"
 }
 
 list_staged_added_or_modified_files() {
@@ -356,6 +381,61 @@ if bad_newline:
     print("FAIL: Markdown files do not end with a newline:")
     for path in bad_newline:
         print(f"- {path}")
+    sys.exit(1)
+PY
+}
+
+check_config_syntax() {
+  "$VENV_PYTHON" - <<'PY'
+import json
+import os
+import subprocess
+import sys
+import tomllib
+
+try:
+    import yaml  # type: ignore
+except Exception:
+    yaml = None
+
+proc = subprocess.run(
+    ["git", "ls-files", "*.json", "*.yaml", "*.yml", "*.toml"],
+    check=True,
+    capture_output=True,
+    text=True,
+)
+failures = []
+yaml_missing = []
+for path in [p for p in proc.stdout.splitlines() if p.strip()]:
+    if not os.path.isfile(path):
+        continue
+    try:
+        if path.endswith(".json"):
+            with open(path, "r", encoding="utf-8") as fh:
+                json.load(fh)
+        elif path.endswith((".yaml", ".yml")):
+            if yaml is None:
+                yaml_missing.append(path)
+                continue
+            with open(path, "r", encoding="utf-8") as fh:
+                yaml.safe_load(fh)
+        elif path.endswith(".toml"):
+            with open(path, "rb") as fh:
+                tomllib.load(fh)
+    except Exception as exc:
+        failures.append((path, str(exc)))
+
+if yaml_missing:
+    print("WARN: YAML files found but PyYAML is unavailable:")
+    for path in yaml_missing:
+        print(f"- {path}")
+    if os.environ.get("FAIL_ON_MISSING_OPTIONAL_TOOLS") == "1":
+        sys.exit(2)
+
+if failures:
+    print("FAIL: config syntax errors detected:")
+    for path, message in failures:
+        print(f"- {path}: {message}")
     sys.exit(1)
 PY
 }
@@ -654,6 +734,9 @@ if [[ "$ENABLE_SHELLCHECK_IF_AVAILABLE" == "1" ]]; then
     else
       echo "[shell] No shell scripts found; skipping shellcheck."
     fi
+  elif [[ "$FAIL_ON_MISSING_OPTIONAL_TOOLS" == "1" ]] && find . -path './.git' -prune -o -type f -name '*.sh' -print | grep -q .; then
+    echo "FAIL: shellcheck is required in strict mode when shell scripts exist."
+    exit 29
   else
     echo "[shell] WARN: shellcheck not installed; skipping shell lint."
   fi
@@ -670,6 +753,9 @@ if [[ "$ENABLE_MARKDOWNLINT_IF_AVAILABLE" == "1" ]]; then
   elif have_command markdownlint-cli2; then
     echo "[docs] markdownlint-cli2"
     markdownlint-cli2 '**/*.md' '#.venv' '#.git'
+  elif [[ "$FAIL_ON_MISSING_OPTIONAL_TOOLS" == "1" ]] && find . -path './.git' -prune -o -type f -name '*.md' -print | grep -q .; then
+    echo "FAIL: markdownlint is required in strict mode when Markdown files exist."
+    exit 30
   else
     echo "[docs] WARN: markdownlint not installed; skipping Markdown style lint."
   fi
@@ -681,6 +767,11 @@ check_markdown_text
 if [[ "$ENABLE_MARKDOWN_LINK_CHECKS" == "1" ]]; then
   echo "[docs] Markdown link check"
   check_markdown_links
+fi
+
+if [[ "$ENABLE_CONFIG_SYNTAX_CHECKS" == "1" ]]; then
+  echo "[config] syntax check"
+  check_config_syntax
 fi
 
 # =========================
@@ -699,25 +790,25 @@ echo "[tests] security: in scope via bandit, gitleaks, and pip-audit"
 if have_tool "pytest"; then
   if have_path "$UNIT_TEST_PATH"; then
     echo "[tests] unit"
-    "$VENV_PYTHON" -m pytest -q "$UNIT_TEST_PATH"
+    run_pytest_target "unit" "$UNIT_TEST_PATH"
   fi
 
   if have_path "$INTEGRATION_TEST_PATH"; then
     echo "[tests] integration"
-    "$VENV_PYTHON" -m pytest -q "$INTEGRATION_TEST_PATH"
+    run_pytest_target "integration" "$INTEGRATION_TEST_PATH"
   fi
 
   if have_path "$SYSTEM_TEST_PATH"; then
     echo "[tests] system"
-    "$VENV_PYTHON" -m pytest -q "$SYSTEM_TEST_PATH"
+    run_pytest_target "system" "$SYSTEM_TEST_PATH"
   fi
 
   if have_path "$REGRESSION_TEST_PATH"; then
     echo "[tests] regression"
-    "$VENV_PYTHON" -m pytest -q "$REGRESSION_TEST_PATH"
+    run_pytest_target "regression" "$REGRESSION_TEST_PATH"
   elif [[ -d "tests" || -f "pytest.ini" || -f "pyproject.toml" || -f "setup.cfg" ]]; then
     echo "[tests] regression (fallback)"
-    "$VENV_PYTHON" -m pytest -q "$PYTEST_FALLBACK_TARGET"
+    run_pytest_target "regression (fallback)" "$PYTEST_FALLBACK_TARGET"
   else
     echo "[tests] regression: out of scope (no pytest targets found)"
   fi

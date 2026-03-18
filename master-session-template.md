@@ -18,6 +18,8 @@ intended to be shippable:
 - `<PROMPT_HOME>\adversarial-testing-prompt.md`
 - `<PROMPT_HOME>\reliability-and-recovery-prompt.md`
 - `<PROMPT_HOME>\security-review-prompt.md`
+- `<PROMPT_HOME>\ship-readiness-prompt.md`
+- `<PROMPT_HOME>\compatibility-and-migration-prompt.md`
 
 Then read only the task-specific and constraint-specific prompt files that are
 actually relevant. Do not load every prompt file by default.

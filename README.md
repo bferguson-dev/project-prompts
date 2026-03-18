@@ -21,6 +21,8 @@ For baseline repo work, use this core pack:
 8. `adversarial-testing-prompt.md`
 9. `reliability-and-recovery-prompt.md`
 10. `security-review-prompt.md`
+11. `ship-readiness-prompt.md`
+12. `compatibility-and-migration-prompt.md`
 
 Then add one task prompt and only the extra constraint or documentation prompts
 that are actually relevant.
@@ -49,6 +51,11 @@ If you want a file-based entry point, start with `prompt-index.md`.
   Forces restart, retry, recovery, and partial-failure review.
 - `security-review-prompt.md`
   Forces trust-boundary and exposure review on risky work.
+- `ship-readiness-prompt.md`
+  Forces an evidence-based go/no-go view instead of assuming green checks mean
+  release readiness.
+- `compatibility-and-migration-prompt.md`
+  Forces review of compatibility risk, migration steps, and rollback concerns.
 - `prompt-index.md`
   Fast map of what prompt to load and when.
 - `master-session-template.md`
@@ -75,6 +82,8 @@ For high-risk or shippable work, add:
 - `adversarial-testing-prompt.md`
 - `reliability-and-recovery-prompt.md`
 - `security-review-prompt.md`
+- `ship-readiness-prompt.md`
+- `compatibility-and-migration-prompt.md`
 
 ## Workflow Defaults
 
@@ -123,9 +132,28 @@ It currently covers:
 - Git hygiene checks around staged diffs, secret exposure, and file modes
 - staged-diff heuristics for merge markers, debug prints, TODO-style markers,
   suspicious local paths, and accidental artifacts
+- config syntax validation for JSON, YAML, and TOML
+- optional strict-mode behavior that can fail when key doc or shell tools are
+  missing
 
 It is designed to be reusable across projects, with environment variables for
 test paths and optional commands where a project has non-pytest validation.
+
+## Placeholder Convention
+
+`<PROMPT_HOME>` is a neutral placeholder for the local directory where these
+prompt files live. Use it in docs and examples instead of machine-specific
+user paths.
+
+## Regression Fixtures
+
+The repo includes `tests/check_sh_selftest.sh` plus fixture files under
+`tests/fixtures/check-sh/` so `check.sh` can be regression-tested, not just
+syntax-checked.
+
+## Changelog
+
+Policy-level changes to the prompt kit are tracked in `CHANGELOG.md`.
 
 ## Intent
 

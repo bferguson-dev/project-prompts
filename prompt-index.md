@@ -26,6 +26,10 @@ relevant files.
   Use when restart safety, retries, partial failure, or rollback matter.
 - [security-review-prompt.md](<PROMPT_HOME>\security-review-prompt.md)
   Use when trust boundaries, secrets, auth, or exposure risk matter.
+- [ship-readiness-prompt.md](<PROMPT_HOME>\ship-readiness-prompt.md)
+  Use when deciding whether work is actually ready to ship.
+- [compatibility-and-migration-prompt.md](<PROMPT_HOME>\compatibility-and-migration-prompt.md)
+  Use when config, APIs, schemas, env vars, or workflows may break consumers.
 - [session-start-cheatsheet.md](<PROMPT_HOME>\session-start-cheatsheet.md)
   Use to decide whether to keep the current session or start a new one.
 
@@ -69,7 +73,7 @@ For baseline repo work, tell the agent to read at least:
 6. [test-strategy-prompt.md](<PROMPT_HOME>\test-strategy-prompt.md)
 7. [tooling-and-lint-prompt.md](<PROMPT_HOME>\tooling-and-lint-prompt.md)
 8. One task prompt
-9. Add [adversarial-testing-prompt.md](<PROMPT_HOME>\adversarial-testing-prompt.md), [reliability-and-recovery-prompt.md](<PROMPT_HOME>\reliability-and-recovery-prompt.md), and [security-review-prompt.md](<PROMPT_HOME>\security-review-prompt.md) for high-risk or shippable work
+9. Add [adversarial-testing-prompt.md](<PROMPT_HOME>\adversarial-testing-prompt.md), [reliability-and-recovery-prompt.md](<PROMPT_HOME>\reliability-and-recovery-prompt.md), [security-review-prompt.md](<PROMPT_HOME>\security-review-prompt.md), [ship-readiness-prompt.md](<PROMPT_HOME>\ship-readiness-prompt.md), and [compatibility-and-migration-prompt.md](<PROMPT_HOME>\compatibility-and-migration-prompt.md) for high-risk or shippable work
 10. Optional constraint or documentation prompts only if relevant
 
 This is the repo's default high-assurance baseline.
