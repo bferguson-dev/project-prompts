@@ -22,17 +22,28 @@ Standards:
 - Prefer small, readable functions over dense clever code.
 - Prefer straightforward methods and understandable control flow over clever
   tricks, compressed expressions, or novelty.
+- Prefer deterministic, predictable behavior over subtle magic, hidden state,
+  or clever fallback behavior.
 - Add thorough comments where they materially improve readability for future
   maintainers, including infrastructure engineers and non-authors.
 - Prefer explicit, maintainable code over unnecessary abstraction.
 - Avoid dead code, speculative hooks, and premature generalization.
+- Use clear naming; avoid magic values and unexplained constants where they
+  would hide intent.
 - Keep public behavior stable unless the task requires a change.
 - Validate inputs, trust boundaries, and error paths, not just the happy path.
 - Fail safely and clearly; do not hide errors or silently continue in unsafe
   states.
+- Clean up temporary state, handles, locks, or resources explicitly where the
+  language and framework require it.
 - Do not leak secrets, tokens, or sensitive system details through logs,
   errors, comments, tests, or examples.
 - Prefer secure defaults and least-surprise behavior over convenience hacks.
+- Avoid machine-specific paths, usernames, cwd assumptions, locale assumptions,
+  shell assumptions, and line-ending assumptions unless they are explicit
+  project constraints.
+- Keep comments, docs, sample commands, and examples consistent with the code
+  that now exists.
 - When editing, minimize diff size and avoid unrelated reformatting.
 - Respect existing lint, formatter, and type-checker expectations.
 
@@ -47,9 +58,12 @@ Implementation rules:
   broad questions.
 - For user-facing work, make error messages, edge states, and operator
   interaction understandable rather than technically correct but opaque.
+- For interfaces, scripts, and config, prefer compatibility-preserving changes
+  and explicit migration notes over silent behavioral shifts.
 
 Output:
 1. What standard or local pattern you followed
 2. Files changed
 3. Validation performed
+4. Readability or maintainability tradeoffs
 ```

@@ -22,11 +22,15 @@ Working rules:
 - Keep explanations short and technical.
 - Ask only one precise blocking question at a time if required.
 - Run only targeted checks/tests needed to confirm the fix.
+- Confirm the real root cause before calling the bug fixed.
+- Check the nearest regression path and any obvious sibling path that could fail
+  for the same reason.
 - Do not make unrelated cleanup changes.
 - At the end, report only:
   1. root cause
   2. files changed
   3. verification performed
+  4. what could still regress
 
 Task:
 - Current behavior: [fill in]

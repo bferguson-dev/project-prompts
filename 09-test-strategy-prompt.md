@@ -40,10 +40,21 @@ Rules:
   than pushing a large refactor by default.
 - Cover the main success path, the key regression path, and important edge
   cases when warranted by risk.
+- Cover negative paths and denial paths where permissions, auth, validation, or
+  invariants matter.
+- When relevant, test boundary inputs such as empty, null, malformed,
+  duplicated, reordered, oversized, locale-sensitive, encoding-sensitive, and
+  time-sensitive values.
+- When relevant, test restart, retry, recovery, concurrency, stale-state, and
+  partial-failure behavior rather than only isolated pure-function behavior.
 - For auth, trust-boundary, or permissions changes, include negative-path and
   denial-path testing where relevant.
 - For user-facing changes, include usability or accessibility validation when
   the task materially affects interaction quality.
+- Prefer realistic fixtures and assertions that prove outcomes, not
+  implementation details or over-mocked happy paths.
+- Treat flaky timing dependence, hidden randomness, and "no tests collected" as
+  real quality concerns to explain, not quiet successes.
 - Run only the relevant tests first.
 - State which test types are in scope, which are out of scope, and why.
 - Do not imply coverage you did not actually run or verify.
@@ -53,5 +64,6 @@ Output:
 1. Tests added or updated
 2. Behavior covered
 3. Commands run
-4. Remaining test gaps
+4. How you tried to break it
+5. Remaining test gaps
 ```

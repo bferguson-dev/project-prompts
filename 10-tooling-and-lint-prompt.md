@@ -23,6 +23,8 @@ Rules:
 - Do not install tools unless the task requires it and no project-standard
   option already exists.
 - Run targeted checks first, not the full suite by default.
+- Prefer changed-files or task-relevant scopes over repo-wide churn when the
+  tooling allows it.
 - Use auto-fix only when it is safe and limited to relevant files.
 - Avoid repo-wide formatting or lint churn unless I explicitly ask for it.
 - If a tool fails due to environment or missing dependencies, state the exact
@@ -30,14 +32,23 @@ Rules:
 - Never call a broken, skipped, or unavailable tool a pass.
 - For shell- or docs-heavy repos, include shell and documentation validation
   where those files are part of the change.
+- For config-heavy repos, validate the syntax and semantics of the changed
+  config rather than trusting a text diff.
 - If the repo already defines scripts or make targets, prefer those over
   ad hoc commands.
+- Keep generated files, codegen output, and synced docs in step with the source
+  files that produce them.
+- Treat local-only success and CI-only success as different signals; note any
+  mismatch between the local path you ran and the real ship path.
+- Do not treat an empty test run, no-op command, or obviously partial gate as a
+  meaningful validation pass.
 
 Validation order:
 1. Relevant formatter or style check if needed
 2. Relevant lint or type-check
 3. Targeted tests covering the change
-4. Broader checks only if necessary
+4. Repo-specific security or config checks
+5. Broader checks only if necessary
 
 Output:
 1. Commands run

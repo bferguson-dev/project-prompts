@@ -24,6 +24,10 @@ Rules:
 - Avoid unnecessary dependency upgrades.
 - If a new dependency is needed, choose the lowest-risk standard option and
   explain why briefly.
+- Review trust, maintenance, and ecosystem fit before introducing a new
+  package, action, or external tool.
+- Consider transitive impact, runtime size, startup cost, and operational
+  surface area, not just direct import convenience.
 - Update lockfiles only when required by the project's normal workflow.
 - Do not add convenience packages unless they solve a real requirement.
 - After installation, run only targeted verification to confirm the dependency
@@ -34,6 +38,8 @@ Safety checks:
   dependencies.
 - Check for an existing equivalent dependency before adding a new one.
 - Preserve reproducibility and avoid surprising environment changes.
+- If dependency or lockfile changes could affect security posture, run the
+  relevant audit or supply-chain review before committing.
 
 Output:
 1. Dependency changes made

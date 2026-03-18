@@ -31,8 +31,12 @@ FAIL_ON_BINARY_STAGED="${FAIL_ON_BINARY_STAGED:-1}"
 FAIL_ON_LARGE_STAGED_FILES="${FAIL_ON_LARGE_STAGED_FILES:-1}"
 MAX_STAGED_FILE_KB="${MAX_STAGED_FILE_KB:-1024}"
 FAIL_ON_SUSPICIOUS_UNTRACKED="${FAIL_ON_SUSPICIOUS_UNTRACKED:-1}"
+FAIL_ON_SUSPICIOUS_STAGED_PATHS="${FAIL_ON_SUSPICIOUS_STAGED_PATHS:-1}"
+FAIL_ON_SUSPICIOUS_STAGED_ARTIFACTS="${FAIL_ON_SUSPICIOUS_STAGED_ARTIFACTS:-1}"
 FAIL_ON_CRLF_STAGED="${FAIL_ON_CRLF_STAGED:-1}"
 FAIL_ON_STAGED_MARKERS="${FAIL_ON_STAGED_MARKERS:-1}"
+FAIL_ON_CASE_COLLISIONS="${FAIL_ON_CASE_COLLISIONS:-1}"
+FAIL_ON_EXECUTABLE_WITHOUT_SHEBANG="${FAIL_ON_EXECUTABLE_WITHOUT_SHEBANG:-1}"
 
 # Test strategy policy
 UNIT_TEST_PATH="${UNIT_TEST_PATH:-tests/unit}"
@@ -206,6 +210,78 @@ if bad:
 PY
 }
 
+check_case_collisions() {
+  "$VENV_PYTHON" - <<'PY'
+import subprocess
+import sys
+
+seen = {}
+collisions = []
+for cmd in (
+    ["git", "ls-files"],
+    ["git", "diff", "--cached", "--name-only", "--diff-filter=AM"],
+):
+    proc = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    for raw in proc.stdout.splitlines():
+        path = raw.strip()
+        if not path:
+            continue
+        lowered = path.lower()
+        existing = seen.get(lowered)
+        if existing is None:
+            seen[lowered] = path
+        elif existing != path:
+            collisions.append((existing, path))
+
+if collisions:
+    print("FAIL: case-collision paths detected (unsafe on case-insensitive filesystems):")
+    for left, right in collisions:
+        print(f"- {left} <-> {right}")
+    sys.exit(1)
+PY
+}
+
+check_executable_files() {
+  "$VENV_PYTHON" - <<'PY'
+import os
+import stat
+import subprocess
+import sys
+
+proc = subprocess.run(["git", "ls-files"], check=True, capture_output=True, text=True)
+bad_binary = []
+bad_shebang = []
+for raw in proc.stdout.splitlines():
+    path = raw.strip()
+    if not path or not os.path.isfile(path):
+        continue
+    mode = os.stat(path).st_mode
+    if not (mode & stat.S_IXUSR):
+        continue
+    with open(path, "rb") as fh:
+        data = fh.read(512)
+    if b"\0" in data:
+        bad_binary.append(path)
+        continue
+    if path.endswith(".md"):
+        continue
+    if not data.startswith(b"#!"):
+        bad_shebang.append(path)
+
+if bad_binary:
+    print("FAIL: tracked executable files look binary or non-script:")
+    for path in bad_binary:
+        print(f"- {path}")
+    sys.exit(1)
+
+if bad_shebang:
+    print("FAIL: executable text files are missing a shebang:")
+    for path in bad_shebang:
+        print(f"- {path}")
+    sys.exit(1)
+PY
+}
+
 check_staged_crlf() {
   "$VENV_PYTHON" - <<'PY'
 import os
@@ -304,6 +380,8 @@ patterns = [
     ("todo marker", re.compile(r"^\+\s*.*\b(TODO|FIXME|HACK|XXX)\b")),
     ("debug print", re.compile(r"^\+\s*.*\b(console\.log|print\(|dbg!|debugger;|fmt\.Println|System\.out\.println)\b")),
     ("local path", re.compile(r"^\+\s*.*(/home/|C:\\\\Users\\\\|/mnt/c/Users/)")),
+    ("private key marker", re.compile(r"^\+\s*.*(BEGIN [A-Z0-9 ]*PRIVATE KEY|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})")),
+    ("confidential placeholder drift", re.compile(r"^\+\s*.*\b(password|passwd|token|secret|api[_-]?key)\b\s*[:=]\s*['\"]?[A-Za-z0-9/_+=.-]{8,}")),
 ]
 
 hits = []
@@ -332,6 +410,52 @@ if hits:
     if len(hits) > 40:
         print(f"... plus {len(hits) - 40} more.")
     sys.exit(1)
+PY
+}
+
+check_staged_path_policy() {
+  "$VENV_PYTHON" - <<'PY'
+import os
+import re
+import subprocess
+import sys
+
+proc = subprocess.run(
+    ["git", "diff", "--cached", "--name-only", "--diff-filter=AM"],
+    check=True,
+    capture_output=True,
+    text=True,
+)
+dangerous = []
+artifact_like = []
+dangerous_re = re.compile(
+    r"(^|/)(\.env($|\.)|.*\.pem$|.*\.key$|.*\.p12$|.*\.pfx$|.*\.kdbx$|.*:Zone\.Identifier$|.*\.local\..*|id_rsa(|\.pub)$|id_ed25519(|\.pub)$)",
+    re.IGNORECASE,
+)
+artifact_re = re.compile(
+    r"\.(zip|tar|tgz|gz|bz2|xz|7z|rar|sqlite|sqlite3|db|dump|bak|csv|tsv|parquet|png|jpg|jpeg|gif|bmp|pdf|doc|docx|xls|xlsx|ppt|pptx|mp4|mov|avi|mkv|wav|mp3)$",
+    re.IGNORECASE,
+)
+for raw in proc.stdout.splitlines():
+    path = raw.strip()
+    if not path:
+        continue
+    if dangerous_re.search(path):
+        dangerous.append(path)
+    if artifact_re.search(path):
+        artifact_like.append(path)
+
+if dangerous:
+    print("FAIL: suspicious staged secret-bearing or local-only paths detected:")
+    for path in dangerous:
+        print(f"- {path}")
+    sys.exit(1)
+
+if artifact_like and os.environ.get("FAIL_ON_SUSPICIOUS_STAGED_ARTIFACTS", "1") == "1":
+    print("FAIL: suspicious staged artifact or export files detected:")
+    for path in artifact_like:
+        print(f"- {path}")
+    sys.exit(2)
 PY
 }
 
@@ -463,9 +587,19 @@ run_git_checks() {
   echo "[git] status --short --branch"
   git status --short --branch
 
+  echo "[git] current branch"
+  git branch --show-current || true
+
+  echo "[git] remotes"
+  git remote -v || true
+
   if [[ "$FAIL_ON_UNSTAGED_CHANGES" == "1" ]] && ! git diff --quiet --exit-code; then
     echo "FAIL: unstaged changes are present. Stage intentionally before using this gate."
     return 23
+  fi
+
+  if [[ "$FAIL_ON_CASE_COLLISIONS" == "1" ]]; then
+    check_case_collisions || return 33
   fi
 
   echo "[git] diff --cached --stat"
@@ -503,6 +637,10 @@ run_git_checks() {
     check_staged_file_sizes || return 25
   fi
 
+  if [[ "$FAIL_ON_SUSPICIOUS_STAGED_PATHS" == "1" || "$FAIL_ON_SUSPICIOUS_STAGED_ARTIFACTS" == "1" ]]; then
+    check_staged_path_policy || return 34
+  fi
+
   if [[ "$FAIL_ON_SUSPICIOUS_UNTRACKED" == "1" ]]; then
     local suspicious_untracked
     suspicious_untracked="$(
@@ -523,6 +661,10 @@ run_git_checks() {
 
   if [[ "$FAIL_ON_STAGED_MARKERS" == "1" ]]; then
     check_staged_content_markers || return 28
+  fi
+
+  if [[ "$FAIL_ON_EXECUTABLE_WITHOUT_SHEBANG" == "1" ]]; then
+    check_executable_files || return 35
   fi
 
   if [[ "$RUN_GIT_SECRETS_CACHED" == "1" ]]; then

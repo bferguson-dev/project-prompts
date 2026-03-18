@@ -21,16 +21,23 @@ Rules:
   migration path explicitly.
 - Check upgrade behavior, downgrade behavior, defaults, and fallback behavior
   where relevant.
+- Check serialization, ordering, pagination, truncation, sorting determinism,
+  and schema-version assumptions where persisted or exchanged data is involved.
+- Check feature flags, config precedence, and mixed-version coexistence risk
+  where different nodes, clients, or operators may see different behavior.
 - Prefer additive, low-surprise changes over breaking changes unless the task
   explicitly requires a break.
 - If a breaking change exists, document the exact impact, who it affects, and
   how to migrate safely.
 - Do not assume compatibility because tests passed; reason about old inputs and
   old consumers deliberately.
+- If migration is one-way or rollback is unsafe, state that clearly and explain
+  the operational consequences.
 
 Output:
 1. Compatibility surfaces reviewed
 2. Breaking or migration risks found
 3. Safe migration or rollback expectations
-4. Remaining compatibility gaps
+4. Old-consumer or mixed-version concerns
+5. Remaining compatibility gaps
 ```

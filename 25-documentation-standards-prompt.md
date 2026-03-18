@@ -36,7 +36,13 @@ Documentation rules:
 - Include concrete commands, file names, inputs, and outputs when available.
 - Document templates, special commands, flags, modes, and operational options.
 - Add a light troubleshooting section covering the most common failure modes.
+- Include rollback, recovery, compatibility, or migration notes when the system
+  can fail or change state in non-obvious ways.
 - Add a known bugs or known limitations section when relevant.
+- Keep links, filenames, example commands, and referenced outputs current with
+  the repository as it actually exists.
+- Do not include real secrets, personal data, or the repo owner's personal
+  name unless the task explicitly requires it.
 - Keep the README concise but complete; move fuller legal or policy language to
   dedicated files when appropriate.
 
@@ -63,4 +69,5 @@ Output:
 1. Documentation files changed
 2. Audience assumptions used
 3. Key sections added or updated
+4. Any documentation or troubleshooting gaps left open
 ```

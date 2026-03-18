@@ -23,6 +23,8 @@ Rules:
 - Keep the code aligned with existing framework and architecture patterns.
 - Maintain or improve readability, testability, and correctness.
 - Run targeted verification to prove behavior remains intact.
+- Check the nearest regression paths and call out any behavior that was assumed,
+  not directly re-proven.
 - Keep explanations brief and focused on the reason for the refactor.
 
 Task:
@@ -35,5 +37,6 @@ Output:
 1. What changed structurally
 2. What behavior was preserved
 3. Verification performed
-4. Any residual refactor risk
+4. What could still regress
+5. Any residual refactor risk
 ```

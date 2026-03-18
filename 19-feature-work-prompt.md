@@ -23,11 +23,14 @@ Working rules:
 - Keep explanations short and technical.
 - Ask only one precise blocking question at a time if required.
 - Run only targeted validation for the feature.
+- State the key assumptions, non-goals, and likely regression surfaces.
 - Do not add unrelated refactors, cleanup, or enhancements.
 - At the end, report only:
   1. what you implemented
   2. files changed
   3. verification performed
+  4. how you tried to break it
+  5. what could still regress
 
 Task:
 - Feature: [fill in]

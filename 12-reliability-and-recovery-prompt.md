@@ -24,6 +24,14 @@ Rules:
   partial failures.
 - Look for orphaned state, stale locks, temp files, broken caches, or
   inconsistent data after failure.
+- Check health and readiness behavior, graceful termination, signal handling,
+  startup ordering, and shutdown ordering where the runtime model makes them
+  relevant.
+- Check queue pressure, lock contention, deadlock risk, resource exhaustion,
+  and cleanup after repeated failure if the change touches shared state or
+  background work.
+- Check config precedence, feature-flag behavior, and split-brain risk when
+  multiple instances or consumers may observe different settings.
 - Prefer explicit recovery behavior over silent best-effort continuation.
 - If safe rollback is not possible, state that clearly as a release risk.
 - Do not claim reliability that was not actually exercised or reasoned about.
@@ -32,5 +40,6 @@ Output:
 1. Reliability and recovery risks reviewed
 2. What was validated
 3. Failure or restart concerns found
-4. Remaining recovery gaps
+4. Rollback or recovery expectations
+5. Remaining recovery gaps
 ```

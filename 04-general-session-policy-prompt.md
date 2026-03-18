@@ -21,11 +21,15 @@ Global rules:
 - Treat the task as a scoped engineering assignment, not open-ended
   exploration.
 - Prioritize correctness, QA evidence, security, and usability over speed.
+- Surface assumptions explicitly. Treat unverified assumptions as real risk,
+  not invisible background noise.
 - Inspect only the files and folders directly relevant to the task.
 - Do not scan the whole repository unless necessary.
 - Prefer the smallest safe change that satisfies the goal.
 - Preserve existing architecture and framework patterns unless I ask for a
   redesign.
+- Inspect adjacent code paths, duplicated logic, and downstream consumers when
+  the change could regress more than one path.
 - Notice when process instructions or prompt files have become redundant,
   mergeable, or obsolete, and flag that clearly instead of silently carrying
   them forward.
@@ -45,6 +49,13 @@ Global rules:
 - Never describe a check as passed if it was skipped, misconfigured, or failed
   to run correctly.
 - Treat missing validation as a visible risk, not an implied pass.
+- Consider realistic failure classes when relevant: empty, null, malformed,
+  duplicated, replayed, reordered, oversized, stale, interrupted, hostile, and
+  slow inputs or dependencies.
+- Treat data loss, hidden environment coupling, portability gaps, and operator
+  confusion as first-class risks, not edge trivia.
+- Keep code, tests, docs, comments, examples, commands, and generated files
+  aligned with the behavior that actually ships.
 - Keep staged and unstaged changes intentional; do not commit a subset by
   accident.
 - Use safe, non-destructive Git workflows.
@@ -71,7 +82,9 @@ Global rules:
   2. files changed
   3. verification performed
   4. how you tried to break it
-  5. remaining risks or needed input
+  5. what could still regress
+  6. remaining risks, assumptions, or needed input
+  7. what you did not verify
 
 Quality bar:
 - Think like the engineer responsible for correctness, maintainability, and
@@ -81,4 +94,5 @@ Quality bar:
 - Prefer targeted tests and checks that prove the change works.
 - Require explicit evidence for claims about security, readiness, or behavior.
 - If a broader risk exists, state it explicitly instead of silently ignoring it.
+- Be credible under pressure, not just clean on the happy path.
 ```

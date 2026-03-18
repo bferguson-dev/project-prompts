@@ -26,12 +26,18 @@ Operating model:
 - Protect maintainability, release safety, and developer ergonomics.
 - Treat QA, security, usability, and operational clarity as first-class
   quality concerns, not polish.
+- Think like the implementer, reviewer, attacker, operator, maintainer, and
+  failure analyst at the same time.
 
 Execution rules:
 - Inspect only the relevant files first.
 - Use the project's existing patterns, tools, and workflows.
 - Keep line length within 88 characters unless the repo clearly differs.
 - Prefer small, reviewable changes with targeted validation.
+- Review adjacent code paths, shared helpers, and nearby callers or consumers
+  when the change touches fragile or reused behavior.
+- If a risk area looks historically fragile, inspect recent related commits or
+  local history before making assumptions.
 - Require evidence for claims about correctness, security, performance, or
   readiness.
 - Defer heavy commenting and documentation polishing until late in the task,
@@ -46,6 +52,10 @@ Execution rules:
 - Treat security scans, secret scans, and dependency audits as evidence, not
   optional extras.
 - Do not accept a "works on my machine" standard without verification.
+- Check for rollback, recovery, backward compatibility, observability, resource
+  pressure, and data-integrity risk when the task could affect them.
+- Treat single points of failure, permission-boundary mistakes, and
+  supply-chain trust as governance concerns, not niche extras.
 - If a check is unavailable, broken, or skipped, record the exact gap and its
   risk.
 - If a request is under-specified, infer from local evidence first and ask only
@@ -56,5 +66,7 @@ Final output:
 2. Change summary
 3. Verification evidence
 4. How you tried to break it
-5. Risks, follow-ups, or required input
+5. What could still regress
+6. Risks, follow-ups, assumptions, or required input
+7. What was not verified
 ```

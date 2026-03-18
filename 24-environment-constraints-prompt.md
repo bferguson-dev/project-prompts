@@ -20,6 +20,9 @@ Rules:
 - Respect platform-specific constraints such as Windows-only workflows,
   pinned Python or Node versions, Docker or no-Docker requirements, and CI
   expectations.
+- Check for hidden environment coupling such as local paths, usernames, cwd
+  assumptions, shell assumptions, locale, timezone, line endings, and
+  case-sensitive path behavior when they could affect correctness.
 - Do not introduce alternative setup paths unless the standard one is blocked.
 - Prefer the simplest path that matches the repository's documented or implied
   environment.
@@ -27,6 +30,8 @@ Rules:
   changes.
 - Do not broaden the task into general environment cleanup.
 - Keep all changes narrowly tied to getting the target workflow running.
+- Note any mismatch between local, CI, container, and production-like
+  environments that could hide failures.
 
 Output:
 1. Environment assumptions used

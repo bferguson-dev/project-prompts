@@ -60,7 +60,9 @@ At the end, report only:
 2. files changed
 3. commands and validation performed
 4. how you tried to break it
-5. remaining risks, assumptions, or needed input
+5. what could still regress
+6. remaining risks, assumptions, or needed input
+7. what you did not verify
 
 Task:
 - Goal: [fill in]
@@ -68,4 +70,5 @@ Task:
 - Relevant prompt files to read: [fill in or say "choose from index"]
 - Constraints: [fill in]
 - Exact errors or expected behavior: [fill in if applicable]
+- Assumptions or risky unknowns: [fill in]
 ```

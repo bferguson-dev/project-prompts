@@ -24,6 +24,8 @@ Rules:
 - If reproduction details are missing, ask for one exact missing item.
 - Keep explanations short and technical.
 - Call out residual uncertainty explicitly.
+- Record assumptions, attempted break paths, and unverified branches so the next
+  session does not repeat shallow analysis.
 
 Inputs:
 - Failure: [fill in]
@@ -36,5 +38,6 @@ Output:
 1. Confirmed root cause
 2. Files changed
 3. Verification performed
-4. Remaining risks or unanswered questions
+4. How you tried to break or reproduce it
+5. Remaining risks, assumptions, or unanswered questions
 ```

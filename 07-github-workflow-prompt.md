@@ -21,6 +21,7 @@ Rules:
 - Prefer small, reviewable diffs over broad mixed changes.
 - Follow the project's existing branch and commit conventions if they are
   visible.
+- Use commit messages that describe the real change, not vague placeholders.
 - Stage changes intentionally; do not commit an accidental subset or
   unexplained mix of staged and unstaged work.
 - If preparing a PR, summarize behavior changes, risk areas, and verification.
@@ -44,6 +45,8 @@ Rules:
 - Before the first push to a new remote or after suspected exposure, run a
   history-aware secret scan such as `git secrets --scan-history`.
 - Before pushing, verify the target branch and remote are the intended ones.
+- Before pushing, confirm the remote branch history and push style are safe for
+  the repo's workflow.
 - Never treat a broken secret scan or broken quality gate as a pass.
 
 Output:

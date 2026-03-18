@@ -22,3 +22,11 @@
 - Added ship-readiness and compatibility/migration prompts.
 - Added config syntax checks, strict mode behavior, and a self-test harness for
   `check.sh`.
+- Expanded the baseline, overlay, and task prompts to encode assumptions,
+  regression thinking, failure-mode review, operability, compatibility, and
+  deep QA expectations from the brainstormed improvement lists.
+- Strengthened `check.sh` with staged sensitive-path checks, suspicious-artifact
+  detection, executable-shebang validation, case-collision checks, and stricter
+  staged-file risk detection.
+- Clarified that generated docs must be updated through the sync scripts rather
+  than manual edits.

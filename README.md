@@ -3,7 +3,7 @@
 This repo is a practical prompt kit for running engineering work with better
 judgment, tighter QA, and less avoidable mess.
 
-Current prompt-kit version: `2026.03.18.2`.
+Current prompt-kit version: `2026.03.18.3`.
 
 The goal is not to load everything at once. The goal is to load the minimum
 set of prompts that gives a coding agent the right operating rules for the
@@ -33,8 +33,6 @@ The leading numbers indicate recommended load order and relative importance:
 - `16` to `22`: task-specific prompts
 - `23` to `24`: process and environment constraints
 - `25` to `29`: documentation and presentation prompts
-- unnumbered files such as `README.md`, `CHANGELOG.md`, and `LICENSE` are repo
-  metadata, not prompt assets
 
 ## Compatibility Table
 
@@ -151,6 +149,8 @@ This repo assumes:
 - no secrets committed, ever
 - no false passes on broken or skipped validation
 - usability and operator clarity matter, not just raw correctness
+- assumptions, regressions, and what was not verified must be surfaced
+- rollback, recovery, compatibility, and observability matter for real releases
 
 ## Downstream Consumer Checklist
 
@@ -182,8 +182,10 @@ It currently covers:
   performance/load, usability, and security concerns
 - Git hygiene checks around staged diffs, secret exposure, and file modes
 - staged-diff heuristics for merge markers, debug prints, task-note markers,
-  suspicious local paths, and accidental artifacts
+  suspicious local paths, secret-like additions, and accidental artifacts
 - config syntax validation for JSON, YAML, and TOML
+- case-collision detection for case-insensitive filesystem safety
+- executable-file sanity checks for shebangs and suspicious executable files
 - optional strict-mode behavior that can fail when key doc or shell tools are
   missing
 
@@ -202,6 +204,12 @@ syntax-checked.
 ## Changelog
 
 Policy-level changes to the prompt kit are tracked in `CHANGELOG.md`.
+
+## Failure-Mode Reference
+
+Use `QA_FAILURE_MODES.md` as the consolidated reference for the bug
+classes, failure modes, and review blind spots this kit is meant to
+cover.
 
 ## Intent
 

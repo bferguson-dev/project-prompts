@@ -23,6 +23,13 @@ Rules:
   known failure modes before calling work ready.
 - Check whether docs, config expectations, and migration steps match the shipped
   behavior.
+- Check whether monitoring, logging, health signals, and incident triage would
+  make a real failure diagnosable after release.
+- Check whether compatibility, migration, performance, security, and usability
+  evidence are strong enough for the actual release risk.
+- Distinguish between "validated enough to continue development" and "validated
+  enough that a hostile or stressed real environment is unlikely to expose an
+  obvious miss."
 - Distinguish clearly between "works locally", "validated enough to merge", and
   "credible to ship".
 - If critical evidence is missing, say it is not ship-ready yet.
@@ -32,5 +39,6 @@ Output:
 1. Ship-readiness decision
 2. Evidence supporting that decision
 3. Blocking risks or missing proof
-4. What must happen before release if not ready
+4. Rollback, observability, and operator-readiness status
+5. What must happen before release if not ready
 ```

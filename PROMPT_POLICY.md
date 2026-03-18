@@ -35,6 +35,7 @@ Merge into an existing prompt when the new guidance is only:
 - a small extension of an existing task mode
 - a tighter example of a current rule
 - a duplicate policy stated with different words
+- a failure mode that already belongs in an existing baseline or overlay prompt
 
 ## Metadata Convention
 
@@ -50,6 +51,10 @@ Every numbered prompt file must contain a generated metadata block with:
 - owner intent
 
 The source of truth for metadata is `prompt_catalog.json`.
+
+Generated docs such as `README.md`, `01-prompt-index.md`, and `VERSION` must be
+updated through `scripts/sync_prompt_docs.py`, not by hand-editing drift into
+them.
 
 ## Numbering Convention
 
@@ -101,6 +106,13 @@ Before committing prompt-kit changes:
 4. Run `./check.sh`.
 5. Review `git diff --cached`.
 6. Record policy-level changes in `CHANGELOG.md`.
+
+When adding new quality doctrine, prefer these destinations in order:
+
+1. baseline prompts for default behavior
+2. risk overlays for deeper specialist scrutiny
+3. task prompts only when the rule changes task execution shape
+4. `check.sh` only when the idea is reliably automatable
 
 ## Downstream Sync Checklist
 

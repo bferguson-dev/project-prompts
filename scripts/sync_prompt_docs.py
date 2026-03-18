@@ -157,7 +157,7 @@ def render_index(catalog: dict) -> str:
 
 
 def render_readme(catalog: dict) -> str:
-    version = VERSION_PATH.read_text(encoding="utf-8").strip()
+    version = catalog["current_version"]
     groups = grouped_prompts(
         sorted(catalog["prompts"], key=lambda item: item["number"])
     )
@@ -294,6 +294,8 @@ def render_readme(catalog: dict) -> str:
             "- no secrets committed, ever",
             "- no false passes on broken or skipped validation",
             "- usability and operator clarity matter, not just raw correctness",
+            "- assumptions, regressions, and what was not verified must be surfaced",
+            "- rollback, recovery, compatibility, and observability matter for real releases",
             "",
             "## Downstream Consumer Checklist",
             "",
@@ -325,8 +327,10 @@ def render_readme(catalog: dict) -> str:
             "  performance/load, usability, and security concerns",
             "- Git hygiene checks around staged diffs, secret exposure, and file modes",
             "- staged-diff heuristics for merge markers, debug prints, task-note markers,",
-            "  suspicious local paths, and accidental artifacts",
+            "  suspicious local paths, secret-like additions, and accidental artifacts",
             "- config syntax validation for JSON, YAML, and TOML",
+            "- case-collision detection for case-insensitive filesystem safety",
+            "- executable-file sanity checks for shebangs and suspicious executable files",
             "- optional strict-mode behavior that can fail when key doc or shell tools are",
             "  missing",
             "",
@@ -345,6 +349,12 @@ def render_readme(catalog: dict) -> str:
             "## Changelog",
             "",
             "Policy-level changes to the prompt kit are tracked in `CHANGELOG.md`.",
+            "",
+            "## Failure-Mode Reference",
+            "",
+            "Use `QA_FAILURE_MODES.md` as the consolidated reference for the bug",
+            "classes, failure modes, and review blind spots this kit is meant to",
+            "cover.",
             "",
             "## Intent",
             "",

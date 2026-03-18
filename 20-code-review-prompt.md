@@ -20,6 +20,11 @@ Working rules:
 - Do not scan the whole repository unless necessary.
 - Keep the review concise and technical.
 - Prioritize findings over summary.
+- Inspect adjacent code paths or shared helpers when the diff implies broader
+  regression risk.
+- Look for correctness, security, compatibility, usability, performance, data
+  integrity, and operational risks, not just style defects.
+- Call out assumptions, missing evidence, and what was not verified.
 - If no issues are found, say so explicitly and note any residual risks or testing gaps.
 - Do not suggest broad refactors unless they are necessary to address a concrete risk.
 

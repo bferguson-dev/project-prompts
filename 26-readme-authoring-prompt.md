@@ -32,6 +32,8 @@ Requirements:
 - Explain templates, special commands, options, and expected outputs.
 - Document the validation or quality gate workflow used to keep the repo safe.
 - Include a light troubleshooting section for common issues.
+- Include rollback, recovery, migration, or compatibility notes when the repo's
+  setup or operation can fail in non-obvious ways.
 - Include a known bugs or known limitations section.
 - Keep the tone practical, professional, and easy to scan.
 - Do not write like a portfolio, tutorial blog, or marketing page.
@@ -45,6 +47,8 @@ Style:
 - Prefer numbered steps when the reader must perform actions in order.
 - Use explicit commands and filenames.
 - Keep claims specific and verifiable.
+- Make sure examples, filenames, commands, and quality-gate steps still match
+  the current repo.
 
 Repo companion:
 - If the repository lacks a full disclaimer file, add one and reference it from

@@ -15,10 +15,6 @@ Use this index when starting a session by file reference instead of pasting
 large prompt blocks. The intent is to let the agent read only the minimum
 relevant files.
 
-Repo note:
-- unnumbered files such as `README.md`, `CHANGELOG.md`, and `LICENSE` are repo
-  metadata and are intentionally outside the prompt run order
-
 ## Navigation And Session Start
 
 - [02-session-start-cheatsheet.md](<PROMPT_HOME>\02-session-start-cheatsheet.md)

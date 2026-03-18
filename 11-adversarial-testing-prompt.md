@@ -21,12 +21,22 @@ Rules:
   events, oversized payloads, empty values, null values, and unexpected state.
 - Consider concurrency, retries, replay, stale state, partial failure, and
   interruption where they could matter.
+- Consider rate-limit pressure, backpressure, queue buildup, cache staleness,
+  ordering drift, and nondeterminism where the system shape makes them
+  plausible.
+- Consider locale, encoding, Unicode, timezone, clock-skew, and DST edge cases
+  where values cross system boundaries.
 - For user-facing workflows, test confusing, rushed, and mistaken operator
   behavior, not just ideal usage.
+- Check loading states, empty states, partial states, and repeated submission
+  behavior for user-facing flows.
 - For APIs, CLIs, scripts, or background jobs, test invalid flags, missing
   dependencies, bad config, missing files, and recovery after interruption.
 - If a trust boundary exists, include abuse, denial, or bypass attempts where
   relevant.
+- If the work is high-risk, use fuzzing, failure injection, load, or
+  concurrency stress when practical instead of relying only on hand-picked
+  cases.
 - State clearly which adversarial cases you actually validated and which remain
   unverified.
 - If a realistic break path is found, treat it as a priority issue rather than

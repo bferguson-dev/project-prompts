@@ -22,6 +22,15 @@ Rules:
   subprocess usage, logging exposure, and unsafe defaults where relevant.
 - Look for injection risk in commands, templates, regex, SQL, URLs, file
   paths, and rendered content.
+- Check for XSS, CSRF, open redirect, path traversal, archive extraction, and
+  symlink handling risk where the surface area makes them plausible.
+- Check session lifecycle, permission boundaries, least privilege, secret
+  rotation or revocation expectations, and file-permission safety where
+  relevant.
+- Check telemetry, logs, traces, and error payloads for secret or sensitive
+  data leakage.
+- Check dependency and automation trust where new packages, actions, or
+  external services are introduced.
 - Check for permission mistakes, accidental data exposure, weak error
   handling, and insecure fallback behavior.
 - Treat missing security evidence as a real gap, not a neutral state.
@@ -33,5 +42,6 @@ Output:
 1. Security surfaces reviewed
 2. Risks or vulnerabilities found
 3. Security checks or evidence used
-4. Remaining security concerns
+4. Abuse or bypass paths considered
+5. Remaining security concerns
 ```
