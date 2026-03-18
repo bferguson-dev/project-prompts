@@ -3,7 +3,8 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TMP_DIR="$(mktemp -d)"
-trap 'rm -rf "$TMP_DIR"' EXIT
+VENV_TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR" "$VENV_TMP_DIR"' EXIT
 
 cp "$REPO_DIR/check.sh" "$TMP_DIR/check.sh"
 cp "$REPO_DIR/tests/fixtures/check-sh/valid.json" "$TMP_DIR/config.json"
@@ -20,6 +21,7 @@ git -C "$TMP_DIR" add .
 
 (
   cd "$TMP_DIR"
+  VENV_DIR="$VENV_TMP_DIR/primary-venv" \
   ENABLE_SHELLCHECK_IF_AVAILABLE=0 \
   ENABLE_MARKDOWNLINT_IF_AVAILABLE=0 \
   FAIL_ON_SUSPICIOUS_STAGED_ARTIFACTS=0 \
@@ -37,6 +39,7 @@ git -C "$TMP_DIR" add config.json
 set +e
 (
   cd "$TMP_DIR"
+  VENV_DIR="$VENV_TMP_DIR/primary-venv" \
   ENABLE_SHELLCHECK_IF_AVAILABLE=0 \
   ENABLE_MARKDOWNLINT_IF_AVAILABLE=0 \
   FAIL_ON_SUSPICIOUS_STAGED_ARTIFACTS=0 \
@@ -63,6 +66,7 @@ EOF
   set +e
   (
     cd "$TMP_DIR"
+    VENV_DIR="$VENV_TMP_DIR/strict-venv" \
     ENABLE_SHELLCHECK_IF_AVAILABLE=1 \
     ENABLE_MARKDOWNLINT_IF_AVAILABLE=1 \
     FAIL_ON_MISSING_OPTIONAL_TOOLS=1 \
