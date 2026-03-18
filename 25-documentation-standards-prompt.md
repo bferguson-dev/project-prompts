@@ -4,6 +4,11 @@
 Write documentation like production documentation for infrastructure
 engineers, not like a portfolio or marketing page.
 
+Scope:
+- Use this prompt for general repository and operational documentation.
+- Use the README-specific prompt for README details.
+- Use the GitHub Pages and portfolio prompts for hiring-facing presentation.
+
 Audience and tone:
 - Assume the primary reader is an infrastructure engineer, operator, or future
   maintainer.

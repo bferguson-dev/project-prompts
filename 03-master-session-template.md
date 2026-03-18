@@ -2,24 +2,24 @@
 
 ```text
 Read only the minimum relevant prompt files for this task from
-`<PROMPT_HOME>\prompt-index.md`.
+`<PROMPT_HOME>\01-prompt-index.md`.
 
 Required baseline:
-- `<PROMPT_HOME>\general-session-policy-prompt.md`
-- `<PROMPT_HOME>\project-governance-prompt.md`
-- `<PROMPT_HOME>\coding-standards-prompt.md`
-- `<PROMPT_HOME>\github-workflow-prompt.md`
-- `<PROMPT_HOME>\credentials-and-secrets-prompt.md`
-- `<PROMPT_HOME>\test-strategy-prompt.md`
-- `<PROMPT_HOME>\tooling-and-lint-prompt.md`
+- `<PROMPT_HOME>\04-general-session-policy-prompt.md`
+- `<PROMPT_HOME>\05-project-governance-prompt.md`
+- `<PROMPT_HOME>\06-coding-standards-prompt.md`
+- `<PROMPT_HOME>\07-github-workflow-prompt.md`
+- `<PROMPT_HOME>\08-credentials-and-secrets-prompt.md`
+- `<PROMPT_HOME>\09-test-strategy-prompt.md`
+- `<PROMPT_HOME>\10-tooling-and-lint-prompt.md`
 
 Use these additional prompts when the task is risky, externally exposed, or
 intended to be shippable:
-- `<PROMPT_HOME>\adversarial-testing-prompt.md`
-- `<PROMPT_HOME>\reliability-and-recovery-prompt.md`
-- `<PROMPT_HOME>\security-review-prompt.md`
-- `<PROMPT_HOME>\ship-readiness-prompt.md`
-- `<PROMPT_HOME>\compatibility-and-migration-prompt.md`
+- `<PROMPT_HOME>\11-adversarial-testing-prompt.md`
+- `<PROMPT_HOME>\12-reliability-and-recovery-prompt.md`
+- `<PROMPT_HOME>\13-security-review-prompt.md`
+- `<PROMPT_HOME>\14-ship-readiness-prompt.md`
+- `<PROMPT_HOME>\15-compatibility-and-migration-prompt.md`
 
 Then read only the task-specific and constraint-specific prompt files that are
 actually relevant. Do not load every prompt file by default.

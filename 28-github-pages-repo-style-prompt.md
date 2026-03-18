@@ -4,6 +4,11 @@
 When working in a personal GitHub Pages portfolio repo, follow the established
 site style and page structure instead of inventing a new pattern.
 
+Scope:
+- Use this prompt for portfolio-site repo style and structure.
+- Use the portfolio project page prompt for the content of a specific project
+  page inside that site.
+
 Observed site conventions:
 - The site presents an infrastructure automation and operations portfolio.
 - Writing is direct, restrained, and credible.

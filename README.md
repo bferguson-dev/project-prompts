@@ -11,79 +11,94 @@ task in front of it.
 
 For baseline repo work, use this core pack:
 
-1. `general-session-policy-prompt.md`
-2. `project-governance-prompt.md`
-3. `coding-standards-prompt.md`
-4. `github-workflow-prompt.md`
-5. `credentials-and-secrets-prompt.md`
-6. `test-strategy-prompt.md`
-7. `tooling-and-lint-prompt.md`
-8. `adversarial-testing-prompt.md`
-9. `reliability-and-recovery-prompt.md`
-10. `security-review-prompt.md`
-11. `ship-readiness-prompt.md`
-12. `compatibility-and-migration-prompt.md`
+1. `04-general-session-policy-prompt.md`
+2. `05-project-governance-prompt.md`
+3. `06-coding-standards-prompt.md`
+4. `07-github-workflow-prompt.md`
+5. `08-credentials-and-secrets-prompt.md`
+6. `09-test-strategy-prompt.md`
+7. `10-tooling-and-lint-prompt.md`
+8. `11-adversarial-testing-prompt.md`
+9. `12-reliability-and-recovery-prompt.md`
+10. `13-security-review-prompt.md`
+11. `14-ship-readiness-prompt.md`
+12. `15-compatibility-and-migration-prompt.md`
 
 Then add one task prompt and only the extra constraint or documentation prompts
 that are actually relevant.
 
-If you want a file-based entry point, start with `prompt-index.md`.
+If you want a file-based entry point, start with `01-prompt-index.md`.
+
+The leading numbers indicate recommended load order and relative importance:
+
+- `01` to `03`: navigation and session-start helpers
+- `04` to `10`: baseline operating rules
+- `11` to `15`: risk-focused overlays for stronger review depth
+- `16` and above: task- or domain-specific prompts
 
 ## Core Files
 
-- `general-session-policy-prompt.md`
+- `04-general-session-policy-prompt.md`
   Baseline operating rules for almost every coding session.
-- `project-governance-prompt.md`
+- `05-project-governance-prompt.md`
   Pushes for senior-engineer ownership, QA discipline, and good judgment.
-- `coding-standards-prompt.md`
+- `06-coding-standards-prompt.md`
   Baseline coding rules for safe, maintainable, understandable changes.
-- `github-workflow-prompt.md`
+- `07-github-workflow-prompt.md`
   Baseline Git and review workflow rules.
-- `credentials-and-secrets-prompt.md`
+- `08-credentials-and-secrets-prompt.md`
   Baseline secret-handling and least-exposure rules.
-- `test-strategy-prompt.md`
+- `09-test-strategy-prompt.md`
   Baseline testing-layer expectations.
-- `tooling-and-lint-prompt.md`
+- `10-tooling-and-lint-prompt.md`
   Baseline validation and tooling expectations.
-- `adversarial-testing-prompt.md`
+- `11-adversarial-testing-prompt.md`
   Forces deliberate break-it thinking instead of happy-path-only validation.
-- `reliability-and-recovery-prompt.md`
+- `12-reliability-and-recovery-prompt.md`
   Forces restart, retry, recovery, and partial-failure review.
-- `security-review-prompt.md`
+- `13-security-review-prompt.md`
   Forces trust-boundary and exposure review on risky work.
-- `ship-readiness-prompt.md`
+- `14-ship-readiness-prompt.md`
   Forces an evidence-based go/no-go view instead of assuming green checks mean
   release readiness.
-- `compatibility-and-migration-prompt.md`
+- `15-compatibility-and-migration-prompt.md`
   Forces review of compatibility risk, migration steps, and rollback concerns.
-- `prompt-index.md`
+- `01-prompt-index.md`
   Fast map of what prompt to load and when.
-- `master-session-template.md`
+- `03-master-session-template.md`
   A ready-to-fill session template for more structured starts.
 
 ## Task Prompts
 
 Use the task prompt that matches the current objective:
 
-- `bug-fix-prompt.md`
-- `feature-work-prompt.md`
-- `code-review-prompt.md`
-- `refactor-prompt.md`
-- `project-setup-prompt.md`
-- `project-setup-prompt-short.md`
-- `debugging-handoff-prompt.md`
-- `test-strategy-prompt.md`
+- `18-bug-fix-prompt.md`
+- `19-feature-work-prompt.md`
+- `20-code-review-prompt.md`
+- `21-refactor-prompt.md`
+- `16-project-setup-prompt.md`
+- `17-project-setup-prompt-short.md`
+- `22-debugging-handoff-prompt.md`
+- `09-test-strategy-prompt.md`
 
 Then add only the relevant supporting prompts for standards, workflow,
 secrets, environment constraints, docs, or repo style.
 
 For high-risk or shippable work, add:
 
-- `adversarial-testing-prompt.md`
-- `reliability-and-recovery-prompt.md`
-- `security-review-prompt.md`
-- `ship-readiness-prompt.md`
-- `compatibility-and-migration-prompt.md`
+- `11-adversarial-testing-prompt.md`
+- `12-reliability-and-recovery-prompt.md`
+- `13-security-review-prompt.md`
+- `14-ship-readiness-prompt.md`
+- `15-compatibility-and-migration-prompt.md`
+
+The prompt set is intentionally scoped to avoid unnecessary overlap:
+
+- baseline files set default operating rules
+- risk overlays deepen review for shippable or exposed work
+- task prompts define the immediate work mode
+- documentation prompts are split between general docs, README-specific work,
+  and portfolio-specific presentation
 
 ## Workflow Defaults
 

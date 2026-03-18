@@ -4,6 +4,10 @@
 When a project is complete enough to serve as a portfolio piece, create or
 update a subpage for it in my GitHub Pages resume site.
 
+Scope:
+- Use this prompt for one specific project page within the portfolio site.
+- Use the GitHub Pages repo style prompt for site-wide style and structure.
+
 Audience and purpose:
 - Write for hiring managers and recruiters first.
 - The page should let a new reader understand almost immediately what the

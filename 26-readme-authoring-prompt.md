@@ -3,6 +3,10 @@
 ```text
 Write or update the README as production-style operational documentation.
 
+Scope:
+- Use this prompt for README-specific work.
+- Use the general documentation prompt for non-README docs.
+
 Requirements:
 - Put this short disclaimer at the very top in italics with attention symbols
   before and after it:

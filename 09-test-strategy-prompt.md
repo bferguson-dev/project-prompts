@@ -6,6 +6,8 @@ Add or update tests with a QA-oriented and scope-controlled workflow.
 Rules:
 - Prioritize validation that proves the software actually works for the
   requested behavior before expanding into secondary quality checks.
+- Use this as the general testing baseline; add the adversarial, reliability,
+  or security prompts when deeper risk-specific review is needed.
 - Focus on tests that prove the requested behavior or bug fix.
 - Prefer the smallest set of high-value tests over broad speculative coverage.
 - Match the project's existing test style, fixtures, helpers, and naming.
