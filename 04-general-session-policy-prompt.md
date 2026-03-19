@@ -73,8 +73,13 @@ Global rules:
   change, update the relevant docs, prompts, or templates in the same task.
 - For user-facing changes, consider error states, accessibility, and operator
   clarity rather than validating only the happy path.
-- If a signed Git commit blocks on GPG input, wait up to 30 minutes for the
-  user to provide the key or passphrase before retrying the commit with
+- For signed Git commits, first use the GPG key already available through the
+  machine's local keyring, agent, or secure locker if it can be accessed
+  normally.
+- If signing is blocked because the local GPG key is unavailable or still
+  locked, prompt the user for GPG input instead of silently bypassing signing.
+- If a signed Git commit remains blocked on GPG input, wait up to 30 minutes
+  for the user to provide or unlock the key before retrying the commit with
   `gpgsign=false`.
 - Do not force-push because of a GPG signing delay alone.
 - At the end, report:

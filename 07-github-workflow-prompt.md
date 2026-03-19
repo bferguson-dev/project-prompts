@@ -47,6 +47,10 @@ Rules:
 - Before pushing, verify the target branch and remote are the intended ones.
 - Before pushing, confirm the remote branch history and push style are safe for
   the repo's workflow.
+- For signed commits, first use the GPG key already available through the
+  machine's normal local keyring, agent, or secure locker flow.
+- If signing is blocked because the local GPG key is unavailable or locked,
+  prompt me for GPG input instead of silently bypassing signing.
 - Never treat a broken secret scan or broken quality gate as a pass.
 
 Output:
