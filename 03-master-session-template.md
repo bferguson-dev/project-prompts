@@ -50,6 +50,12 @@ Working rules:
 - When documentation is added, write it like production documentation, not a
   portfolio.
 - Keep explanations concise and technical.
+- For longer tasks, send concise bulleted progress updates every 60 seconds.
+- Use short, concrete lines labeled when relevant with `Now:`, `Done:`,
+  `Found:`, `Blocker:`, and `Next:`.
+- Include what you finished since the last update, key findings, and any
+  blocker or uncertainty.
+- If there is no blocker, explicitly say `Blocker: none`.
 - Ask only one precise blocking question at a time.
 - Use safe, non-destructive Git practices.
 - Do not treat broken or skipped checks as passes.

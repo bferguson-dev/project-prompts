@@ -3,7 +3,7 @@
 This repo is a practical prompt kit for running engineering work with better
 judgment, tighter QA, and less avoidable mess.
 
-Current prompt-kit version: `2026.03.18.3`.
+Current prompt-kit version: `2026.03.31.1`.
 
 The goal is not to load everything at once. The goal is to load the minimum
 set of prompts that gives a coding agent the right operating rules for the
@@ -147,6 +147,9 @@ This repo assumes:
 - working software comes first
 - minimal context loading
 - small safe changes
+- longer tasks include concise bulleted progress updates every 60 seconds
+- progress updates use short, concrete `Now:`, `Done:`, `Found:`, `Blocker:`, and `Next:` lines when relevant
+- progress updates explicitly say `Blocker: none` when there is no blocker
 - QA-first execution
 - non-destructive Git usage
 - no secrets committed, ever

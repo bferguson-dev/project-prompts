@@ -2,6 +2,10 @@
 
 ## 2026-03-31
 
+- Added a baseline prompt-kit rule for longer tasks to send concise bulleted
+  progress updates every 60 seconds using `Now:`, `Done:`, `Found:`,
+  `Blocker:`, and `Next:` labels, with an explicit `Blocker: none` when
+  applicable.
 - Replaced remaining `git-secrets` references in the prompt kit with
   `gitleaks` so the prompts, README, and `check.sh` match the repo's actual
   secret-scanning workflow and the session-log rules.

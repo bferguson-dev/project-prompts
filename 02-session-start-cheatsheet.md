@@ -45,6 +45,10 @@ Use one prompt per meaningful objective. Keep the session focused on a single wo
 - Avoid mixing unrelated tasks in one thread
 - Ask for targeted validation instead of full-suite work unless needed
 - Keep explanations brief unless you want teaching
+- For longer tasks, expect concise bulleted progress updates every 60 seconds
+- Progress updates should use short, concrete lines labeled when relevant with
+  `Now:`, `Done:`, `Found:`, `Blocker:`, and `Next:`
+- If there is no blocker, the update should explicitly say `Blocker: none`
 
 ## Fast Rule Of Thumb
 

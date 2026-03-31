@@ -44,6 +44,14 @@ Global rules:
 - Keep line length within 88 characters unless the project clearly uses a
   different standard.
 - Keep explanations short, technical, and decision-focused.
+- While working on longer tasks, send concise bulleted progress updates every
+  60 seconds.
+- In each progress update, use these labels when relevant: `Now:`, `Done:`,
+  `Found:`, `Blocker:`, `Next:`.
+- Keep each progress-update line short and concrete.
+- Include what was finished since the last update, key findings, and any
+  blocker or uncertainty.
+- If there is no blocker, explicitly say `Blocker: none`.
 - Ask only one precise blocking question at a time.
 - Do not do unrelated cleanup, opportunistic refactors, or style churn.
 - Never describe a check as passed if it was skipped, misconfigured, or failed
