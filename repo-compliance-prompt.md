@@ -39,7 +39,8 @@ Requirements:
 - Do not use my personal name in documentation unless this is explicitly GitHub Pages or portfolio-facing work.
 - Add or update repo docs, README sections, disclaimers, ignore rules, workflow checks, and quality gates where needed.
 - Add or adapt a repo-appropriate `check.sh` or equivalent quality gate based on the prompt-kit baseline.
-- Ensure no secrets are committed. Run `git diff --cached`, `git secrets --scan --cached`, and any relevant history scan before commit.
+- Ensure no secrets are committed. Run `git diff --cached`,
+  `gitleaks git --staged`, and any relevant history scan before commit.
 - If the repo has CI, bring it into line with the local quality gate and fix any CI/environment mismatches.
 - If prompts, docs, scripts, or checks would be redundant or overlapping, consolidate them.
 - Do not claim a check passed if it was skipped, broken, or unavailable.

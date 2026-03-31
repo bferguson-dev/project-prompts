@@ -61,14 +61,14 @@ Global rules:
 - Use safe, non-destructive Git workflows.
 - Before every commit, review `git diff --cached` for accidental secrets,
   personal data, machine-specific paths, or unrelated files.
-- Immediately before every commit, run `git secrets` against the pending
+- Immediately before every commit, run `gitleaks` against the pending
   changes and stop if it reports a problem.
 - Before every commit, check for unexpected executable-bit or file-mode
   changes and correct them unless they are intentional.
 - If dependency manifests or lockfiles changed, run the relevant dependency
   vulnerability audit before committing.
 - Before the first push to a new remote or after suspected exposure, run a
-  history-aware secret scan such as `git secrets --scan-history`.
+  history-aware secret scan such as `gitleaks git --log-opts="--all"`.
 - If user-facing behavior, interfaces, workflows, or operational assumptions
   change, update the relevant docs, prompts, or templates in the same task.
 - For user-facing changes, consider error states, accessibility, and operator

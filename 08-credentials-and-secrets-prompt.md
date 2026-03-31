@@ -27,7 +27,7 @@ Rules:
   the project explicitly expects placeholders.
 - Before any commit, inspect staged diffs for secret exposure, personal data,
   local filesystem paths, and copied environment values.
-- Use `git secrets` immediately before commit, and use a history scan when
+- Use `gitleaks` immediately before commit, and use a history scan when
   validating a new remote or suspected prior exposure.
 - Prefer placeholders, examples, and documented variable names over real
   values.

@@ -34,7 +34,7 @@ Rules:
   personal data, machine paths, generated noise, and unrelated files.
 - Before every commit, run `git diff --cached --check` and stop on whitespace,
   conflict-marker, or patch-application problems.
-- Immediately before every commit, run `git secrets` against the pending
+- Immediately before every commit, run `gitleaks` against the pending
   changes and stop if it reports a problem.
 - Before every commit, inspect file-mode changes and fix unexpected
   executable-bit changes.
@@ -43,7 +43,7 @@ Rules:
 - If dependency manifests or lockfiles changed, run the relevant dependency
   vulnerability audit before committing.
 - Before the first push to a new remote or after suspected exposure, run a
-  history-aware secret scan such as `git secrets --scan-history`.
+  history-aware secret scan such as `gitleaks git --log-opts="--all"`.
 - Before pushing, verify the target branch and remote are the intended ones.
 - Before pushing, confirm the remote branch history and push style are safe for
   the repo's workflow.

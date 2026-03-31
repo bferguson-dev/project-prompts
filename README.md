@@ -137,6 +137,9 @@ One-time setup:
 git config core.hooksPath .githooks
 ```
 
+`check.sh` also uses `gitleaks` for staged and optional history-aware secret
+scanning. This repo does not rely on `git-secrets`.
+
 ## Workflow Defaults
 
 This repo assumes:

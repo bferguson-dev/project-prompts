@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-03-31
+
+- Replaced remaining `git-secrets` references in the prompt kit with
+  `gitleaks` so the prompts, README, and `check.sh` match the repo's actual
+  secret-scanning workflow and the session-log rules.
+
 ## 2026-03-18
 
 - Added `prompt_catalog.json`, `VERSION`, generated prompt metadata blocks, and

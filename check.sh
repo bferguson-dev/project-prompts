@@ -22,8 +22,8 @@ GITLEAKS_FAIL_ON_FINDINGS="${GITLEAKS_FAIL_ON_FINDINGS:-1}" # 1=yes, 0=no
 
 # Git hygiene policy
 RUN_GIT_CHECKS="${RUN_GIT_CHECKS:-1}"
-RUN_GIT_SECRETS_CACHED="${RUN_GIT_SECRETS_CACHED:-1}"
-RUN_GIT_SECRETS_HISTORY="${RUN_GIT_SECRETS_HISTORY:-0}"
+RUN_GITLEAKS_STAGED="${RUN_GITLEAKS_STAGED:-${RUN_GIT_SECRETS_CACHED:-1}}"
+RUN_GITLEAKS_HISTORY="${RUN_GITLEAKS_HISTORY:-${RUN_GIT_SECRETS_HISTORY:-0}}"
 FAIL_ON_EXECUTABLE_MARKDOWN="${FAIL_ON_EXECUTABLE_MARKDOWN:-1}"
 FAIL_ON_UNSTAGED_CHANGES="${FAIL_ON_UNSTAGED_CHANGES:-1}"
 FAIL_ON_DIFF_CHECK="${FAIL_ON_DIFF_CHECK:-1}"
@@ -59,7 +59,7 @@ FAIL_ON_MISSING_OPTIONAL_TOOLS="${FAIL_ON_MISSING_OPTIONAL_TOOLS:-0}"
 
 if [[ "$STRICT_MODE" == "1" ]]; then
   FAIL_ON_MISSING_OPTIONAL_TOOLS=1
-  RUN_GIT_SECRETS_HISTORY=1
+  RUN_GITLEAKS_HISTORY=1
 fi
 
 # =========================
@@ -667,35 +667,35 @@ run_git_checks() {
     check_executable_files || return 35
   fi
 
-  if [[ "$RUN_GIT_SECRETS_CACHED" == "1" ]]; then
-    if have_command git-secrets; then
-      if git secrets --scan --cached >/dev/null 2>&1; then
-        echo "OK: git-secrets cached scan passed"
+  if [[ "$RUN_GITLEAKS_STAGED" == "1" ]]; then
+    if have_command gitleaks; then
+      if gitleaks git --no-banner --redact --staged . >/dev/null 2>&1; then
+        echo "OK: gitleaks staged scan passed"
       else
-        echo "FAIL: git-secrets cached scan found a problem."
+        echo "FAIL: gitleaks staged scan found a problem."
         return 21
       fi
     elif [[ "$FAIL_ON_MISSING_OPTIONAL_TOOLS" == "1" ]]; then
-      echo "FAIL: git-secrets is required in strict mode."
+      echo "FAIL: gitleaks is required in strict mode."
       return 31
     else
-      echo "[git] WARN: git-secrets not installed; skipping cached scan."
+      echo "[git] WARN: gitleaks not installed; skipping staged scan."
     fi
   fi
 
-  if [[ "$RUN_GIT_SECRETS_HISTORY" == "1" ]]; then
-    if have_command git-secrets; then
-      if git secrets --scan-history >/dev/null 2>&1; then
-        echo "OK: git-secrets history scan passed"
+  if [[ "$RUN_GITLEAKS_HISTORY" == "1" ]]; then
+    if have_command gitleaks; then
+      if gitleaks git --no-banner --redact --log-opts="--all" . >/dev/null 2>&1; then
+        echo "OK: gitleaks history scan passed"
       else
-        echo "FAIL: git-secrets history scan found a problem."
+        echo "FAIL: gitleaks history scan found a problem."
         return 22
       fi
     elif [[ "$FAIL_ON_MISSING_OPTIONAL_TOOLS" == "1" ]]; then
-      echo "FAIL: git-secrets is required in strict mode."
+      echo "FAIL: gitleaks is required in strict mode."
       return 32
     else
-      echo "[git] WARN: git-secrets not installed; skipping history scan."
+      echo "[git] WARN: gitleaks not installed; skipping history scan."
     fi
   fi
 }
