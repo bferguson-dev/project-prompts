@@ -1,13 +1,62 @@
+*[!] This project is provided as-is, without warranties or guarantees of any kind, and has not been validated in a production environment unless explicitly stated otherwise. You are solely responsible for evaluating, testing, securing, and operating it safely in your environment and for verifying compliance with any legal, regulatory, or contractual requirements. By using this project, you accept all risk, and the authors and contributors assume no liability for any loss, damage, outage, misuse, or other consequences arising from its use. [!]*
+
 # Prompt Kit For Making Shit Good
 
 This repo is a practical prompt kit for running engineering work with better
 judgment, tighter QA, and less avoidable mess.
 
-Current prompt-kit version: `2026.03.31.1`.
+Current prompt-kit version: `2026.04.06.1`.
 
 The goal is not to load everything at once. The goal is to load the minimum
 set of prompts that gives a coding agent the right operating rules for the
 task in front of it.
+
+The full legal disclaimer is in `DISCLAIMER.md`.
+
+## Non-Goals
+
+- This repo is not a general-purpose coding standard for every team.
+- This repo is not a legal, compliance, or security certification.
+- This repo does not replace project-specific validation in downstream repos.
+
+## Requirements
+
+- Python 3 for prompt sync and lint scripts.
+- Bash for `check.sh`.
+- `gitleaks` for staged and optional history-aware secret scanning.
+- Optional Markdown, shell, and dependency-audit tools when strict local checks
+  are enabled.
+
+## Assumptions
+
+- Downstream repos will pin or record the prompt-kit version or commit they
+  used.
+- Generated docs stay synchronized through `scripts/sync_prompt_docs.py`.
+- The canonical legal disclaimer in `prompt_catalog.json` is reused verbatim
+  unless a repo-specific exception is explicitly approved.
+
+## Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -U pip pytest
+git config core.hooksPath .githooks
+```
+
+## Usage
+
+1. Select the smallest prompt bundle that matches the task.
+2. Read `01-prompt-index.md` when you need a file-based entry point.
+3. Use `repo-compliance-prompt.md` when applying the prompt kit to another
+   repository.
+4. Run `./check.sh` before committing prompt-kit changes.
+
+## Expected Output
+
+- Updated generated docs after `python scripts/sync_prompt_docs.py`.
+- Prompt lint results from `python scripts/lint_prompts.py`.
+- Local quality-gate output from `./check.sh`.
 
 ## Start Here
 
@@ -221,3 +270,27 @@ cover.
 
 This repo is for making agent-driven engineering work sharper, safer, and more
 reviewable without turning every task into process theater.
+
+## Troubleshooting
+
+- If generated docs drift, update `prompt_catalog.json` first and rerun
+  `python scripts/sync_prompt_docs.py`.
+- If `gitleaks` is unavailable, install it before treating a commit as ready.
+- If optional strict checks fail because tools are missing, either install the
+  missing tools or report the validation gap explicitly.
+
+## Recovery And Rollback
+
+- Revert prompt body changes with normal Git review if downstream behavior
+  would change unintentionally.
+- Treat renumbering, renaming, or changing the canonical legal disclaimer as a
+  breaking change and record it in `CHANGELOG.md`.
+
+## Known Limitations
+
+- The prompt kit improves review discipline but cannot prove downstream code is
+  correct.
+- Some checks depend on optional local tools and may be warnings outside strict
+  mode.
+- Downstream repositories still need their own tests, threat review, and
+  environment-specific validation.

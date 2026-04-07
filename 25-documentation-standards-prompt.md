@@ -52,11 +52,10 @@ Timing:
 - Defer broad code-comment passes until implementation is stable.
 
 README requirements:
-- At the very top, include a short, high-visibility disclaimer in italics with
-  symbols before and after it.
-- The short disclaimer should be about two sentences and clearly state that the
-  project has not been tested in a production environment and that users must
-  perform their own due diligence and testing before use.
+- At the very top, include the canonical legal disclaimer from
+  `27-legal-disclaimer-prompt.md` in italics with attention symbols before and
+  after it.
+- Do not paraphrase, shorten, or expand the canonical disclaimer wording.
 - The README should include clear sections for overview, non-goals or what it
   does not do, requirements, assumptions, setup, usage, expected output,
   troubleshooting, and known bugs.

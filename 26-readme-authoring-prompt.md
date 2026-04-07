@@ -19,11 +19,9 @@ Scope:
 - Use the general documentation prompt for non-README docs.
 
 Requirements:
-- Put this short disclaimer at the very top in italics with attention symbols
-  before and after it:
-  "*[!] This project has not been tested in a production environment. You are
-  responsible for validating, understanding, and testing it in your own
-  environment before any real-world use. [!]*"
+- Put the canonical legal disclaimer from `27-legal-disclaimer-prompt.md` at
+  the very top in italics with attention symbols before and after it.
+- Do not paraphrase, shorten, or expand the canonical disclaimer wording.
 - Immediately explain what the project is and what it does.
 - State what it does not do or what is out of scope.
 - List requirements and assumptions clearly.

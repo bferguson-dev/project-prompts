@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-04-06
+
+- Aligned README guidance with the canonical legal disclaimer from
+  `27-legal-disclaimer-prompt.md`.
+- Updated generated README output to include operational documentation sections
+  and a standalone disclaimer reference.
+
 ## 2026-03-31
 
 - Added a baseline prompt-kit rule for longer tasks to send concise bulleted
